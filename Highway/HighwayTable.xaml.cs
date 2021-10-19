@@ -12,17 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Highway.Models;
 
 namespace Highway
 {
     /// <summary>
-    /// Interaction logic for Table.xaml
+    /// Interaction logic for HighwayTable.xaml
     /// </summary>
-    public partial class Table : UserControl
+    public partial class HighwayTable : UserControl
     {
-        public Table()
+        readonly UpdateTable updateTable;
+        public HighwayTable()
         {
             InitializeComponent();
+            updateTable = new UpdateTable();
+            UpdateTable.HighWaysFill += onTableUpdate;
+        }
+
+        private void onTableUpdate(HighwayList list)
+        {
+            RoadTable.ItemsSource = new List<string>() { "test", "test1" };
         }
     }
 }

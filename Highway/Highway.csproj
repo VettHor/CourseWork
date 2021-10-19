@@ -79,12 +79,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Table.xaml.cs">
-      <DependentUpon>Table.xaml</DependentUpon>
+    <Compile Include="HighwayTable.xaml.cs">
+      <DependentUpon>HighwayTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Highway.cs" />
+    <Compile Include="Models\HighwayList.cs" />
+    <Compile Include="Models\UpdateTable.cs" />
     <Compile Include="UserControlInitial.xaml.cs">
       <DependentUpon>UserControlInitial.xaml</DependentUpon>
     </Compile>
+    <Page Include="HighwayTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -97,10 +104,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Table.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControlInitial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

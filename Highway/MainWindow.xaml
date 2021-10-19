@@ -9,30 +9,34 @@
     <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown">
         <StackPanel VerticalAlignment="Top">
             <Grid Background="#FFC00000" Height="10"/>
-            <Grid Margin="5">
+            <Grid Margin="5" Height="50">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="235*"/>
                     <ColumnDefinition Width="103*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="490,0,9.6,-0.4" Width="206">
-                    <TextBlock Text="Highway" VerticalAlignment="Center" FontSize="50" FontFamily="Goudy Old Style" Margin="20 0" Width="176"/>
+                    <TextBlock Text="Highway" VerticalAlignment="Center" FontSize="45" FontFamily="Goudy Old Style" Margin="20 0" Width="176"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,-0.4" Grid.Column="1">
-                    <Button Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray">
+                    <Button Width="60" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray">
                         <materialDesign:PackIcon Kind="BellOutline" Width="40" Height="40"/>
                     </Button>
-                    <Button Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Margin="0 0 10 0">
+                    <Button Width="60" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Margin="0 0 10 0">
                         <materialDesign:PackIcon Kind="Settings" Width="40" Height="40"/>
                     </Button>
-                    <Button x:Name="ButtonFechar" Width="60" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Click="ButtonFechar_Click">
+                    <Button x:Name="ButtonFechar" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Click="ButtonFechar_Click">
                         <materialDesign:PackIcon Kind="Power" Width="40" Height="40"/>
                     </Button>
                 </StackPanel>
             </Grid>
         </StackPanel>
 
-        <Grid Margin="297,83,0,165">
+        <Grid Margin="65,79,0,165">
             <Grid x:Name="GridPrincipal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ScrollViewer HorizontalScrollBarVisibility="Hidden" 
+                VerticalScrollBarVisibility="Hidden" Margin="0,-19,0,0">
+                <local:HighwayTable x:Name="Table" Grid.Row="1" Height="365" Width="724" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+            </ScrollViewer>
         </Grid>
 
         <Grid Margin="297,440,0,0">
@@ -62,7 +66,8 @@
                                       Margin="10 -5 0 520"
                                       Height="40"
                                       Width="40"
-                                      BorderThickness="0">
+                                      BorderThickness="0"
+                                      Unchecked="Tg_Btn_Unchecked" Checked="Tg_Btn_Checked">
                 <Image Source="Assets/menu-4-xxl.png" Stretch="None"/>
                 <ToggleButton.Triggers>
                     <EventTrigger RoutedEvent="ToggleButton.Checked">
@@ -94,7 +99,7 @@
                 </ToggleButton.Triggers>
             </ToggleButton>
 
-            <Rectangle HorizontalAlignment="Stretch" Fill="#FFC00000" Margin="0,77,0,517" RenderTransformOrigin="0.5,0.5">
+            <Rectangle HorizontalAlignment="Stretch" Fill="#FFC00000" Margin="0,69,0,525" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>

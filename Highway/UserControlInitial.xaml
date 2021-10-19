@@ -12,6 +12,7 @@
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
                 <StackPanel>
                     <TextBlock Text="Person plus" FontFamily="Cooper Black" Foreground="#FFC00000"/>
+                    <Button FontFamily="Goudy Old Style" Content="Click it" FontSize="18" Margin="25" Click="OnButtonClick"/>
                     <StackPanel Margin="10">
                         <TextBlock Text="R$ 28" FontSize="50" FontFamily="Cooper Black" Foreground="#FFC00000"/>
                         <TextBlock Text="Person pluss" FontSize="25" FontFamily="Goudy Old Style" FontWeight="Bold" Margin="5"/>
@@ -21,7 +22,6 @@
                             asdsdasdasadsda dssda sad.
                         </TextBlock>
                     </StackPanel>
-                    <Button FontFamily="Goudy Old Style" Content="Click it" FontSize="18" Margin="25"/>
                 </StackPanel>
                 <Image Margin="10" Width="200" Height="200" Source="Assets/Actions-list-add-user-icon.png" Stretch="UniformToFill"/>
             </StackPanel>
