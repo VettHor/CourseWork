@@ -8,7 +8,7 @@ namespace Highway.Models
 {
     public enum RoadType { state, regional, areal, local }
     public enum Availability { unavailable, available }
-    public class Highway
+    public class HighWay
     {
         protected string _nameHighway;
         protected RoadType _roadType;
@@ -47,7 +47,7 @@ namespace Highway.Models
             get => _roadDivider;
             set => _roadDivider = value;
         }
-        public Highway(string nameHighway = "", string roadType = "", uint roadLength = 0, 
+        public HighWay(string nameHighway = "", string roadType = "", uint roadLength = 0, 
             uint numberLanes = 0, string banquette = "", string roadDivider = "")
         {
             this._nameHighway = nameHighway;

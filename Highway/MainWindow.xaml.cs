@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Media;
 using System.Windows.Media.Animation;
+using Highway.Models;
 
 namespace Highway
 {
@@ -22,11 +23,13 @@ namespace Highway
     /// </summary>
     public partial class MainWindow : Window
     {
+        static public HighwayList highwaysList; // to keep all changes
         const int from = 492;
         const int add = 232;
         public MainWindow()
         {
             InitializeComponent();
+            highwaysList = new HighwayList();
             nav_pnl.Width = 65;
             DoubleAnimation fade2 = new DoubleAnimation()
             {
@@ -49,7 +52,8 @@ namespace Highway
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DragMove();
+            if(e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)

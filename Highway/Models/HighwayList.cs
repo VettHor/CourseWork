@@ -1,23 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Highway.Models;
+using Microsoft.Win32;
 
 namespace Highway.Models
 {
-    class HighwayList
+    public class HighwayList
     {
-        protected List<Highway> highwaysList;
+        public List<HighWay> highwaysList;
 
         public HighwayList()
         {
-            highwaysList = new List<Highway>();
+            highwaysList = new List<HighWay>();
         }
         public void ReadFile()
         {
+            try
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.Multiselect = false;
+                fileDialog.Filter = "Text files|*.txt*.*";
+                fileDialog.DefaultExt = ".txt";
+                Nullable<bool> dialogOk = fileDialog.ShowDialog();
+                if(dialogOk == true)
+                {
+                    string filePath = fileDialog.FileNames[0];
+                    string line = "";
+                    string[] lineSplit;
 
+                    string nameHighway = "";
+                    RoadType roadType = RoadType.state;
+                    uint roadLength;
+                    uint numberLanes;
+                    Availability banquette = Availability.unavailable;
+                    Availability roadDivider = Availability.unavailable;
+
+                    using (StreamReader reader = new StreamReader(filePath))
+                    {
+                        while(reader.Peek() >= 0)
+                        {
+                            line = reader.ReadLine();
+                            lineSplit = line.Split();
+                            for(int i = 0; i < lineSplit.Length; ++i)
+                            {
+                                lineSplit[i] = String.Concat(lineSplit[i].Where(c => !Char.IsWhiteSpace(c)));
+                            }
+                            nameHighway = lineSplit[0];
+                            if (!Enum.IsDefined(typeof(RoadType), lineSplit[1]))
+                                throw new FormatException("Wrong file format");
+                            roadType = (RoadType)Enum.Parse(typeof(RoadType), lineSplit[1], true);
+                            if (!uint.TryParse(lineSplit[2], out roadLength))
+                                throw new FormatException("Wrong file format");
+                            if (!uint.TryParse(lineSplit[3], out numberLanes))
+                                throw new FormatException("Wrong file format");
+                            if (!Enum.IsDefined(typeof(Availability), lineSplit[4]))
+                                throw new FormatException("Wrong file format");
+                            banquette = (Availability)Enum.Parse(typeof(Availability), lineSplit[4], true);
+                            if (!Enum.IsDefined(typeof(Availability), lineSplit[5]))
+                                throw new FormatException("Wrong file format");
+                            roadDivider = (Availability)Enum.Parse(typeof(Availability), lineSplit[5], true);
+
+                            highwaysList.Add(new HighWay(nameHighway, roadType.ToString(), roadLength, numberLanes, banquette.ToString(), roadDivider.ToString()));
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
+        public HighWay this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= highwaysList.Count)
+                {
+                    throw new IndexOutOfRangeException("Index is out of range.");
+                }
+                return highwaysList[index];
+            }
+        }
+
+
     }
 }

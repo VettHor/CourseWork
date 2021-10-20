@@ -99,7 +99,7 @@
                 </ToggleButton.Triggers>
             </ToggleButton>
 
-            <Rectangle HorizontalAlignment="Stretch" Fill="#FFC00000" Margin="0,69,0,525" RenderTransformOrigin="0.5,0.5">
+            <Rectangle HorizontalAlignment="Stretch" Fill="#FFC00000" Margin="0,71,0,522" RenderTransformOrigin="0.5,0.5">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1"/>

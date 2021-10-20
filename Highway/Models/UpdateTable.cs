@@ -10,9 +10,9 @@ namespace Highway.Models
     {
         public delegate void HighwayListEvent(HighwayList list);
         public static event HighwayListEvent HighWaysFill;
-        public void UpDateHighways(HighwayList highWay)
+        public void UpDateHighways(HighwayList highWays)
         {
-            HighWaysFill?.Invoke(highWay);
+            HighWaysFill?.Invoke(highWays);
         }
     }
 }
