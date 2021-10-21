@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Highway.UserControls.UserControlSort"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Highway.UserControls"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Height="200" Width="500">
+    <Grid>
+        <materialDesign:TransitioningContent x:Name="TrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
+            <Button
+                Style="{StaticResource RoundButtonTemplate}"
+                Width="250"
+                Height="80"
+                BorderBrush="#fff"
+                Name="SortButton"
+                Content="Sort"
+                FontSize="40"
+                FontFamily="Palatino Linotype" Margin="240,10,10,110" Click="SortButton_Click"
+            />
+        </materialDesign:TransitioningContent>
+    </Grid>
+</UserControl>

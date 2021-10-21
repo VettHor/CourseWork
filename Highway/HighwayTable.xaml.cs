@@ -13,7 +13,6 @@ namespace Highway
     public partial class HighwayTable : UserControl
     {
         readonly UpdateTable updateTable;
-        private const uint countColumns = 7;
         public HighwayTable()
         {
             InitializeComponent();
@@ -23,6 +22,7 @@ namespace Highway
 
         private void onTableUpdate(HighwayList list)
         {
+            if (list.GetCurrentLength() == 0) return;
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn("№", typeof(int)));
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
@@ -32,9 +32,8 @@ namespace Highway
             dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Divider", typeof(string)));
 
-            DataRow rows;
-            HighWay highway;
-            for (int i = 0; i < list.highwaysList.Count; ++i)
+            DataRow rows; HighWay highway;
+            for (int i = 0; i < list.GetCurrentLength(); ++i)
             {
                 rows = dataTable.NewRow();
                 highway = list[i];
@@ -53,8 +52,10 @@ namespace Highway
                 column.IsReadOnly = true;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
+            RoadTable.Columns[0].Width = new DataGridLength(0.5, DataGridLengthUnitType.Star);
+            RoadTable.Columns[1].Width = new DataGridLength(1.5, DataGridLengthUnitType.Star);
             RoadTable.CanUserAddRows = false;
-            RoadTable.CanUserDeleteRows = false;    
+            RoadTable.CanUserDeleteRows = false;
         }
     }
 }

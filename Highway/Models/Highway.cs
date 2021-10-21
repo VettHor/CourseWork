@@ -8,7 +8,7 @@ namespace Highway.Models
 {
     public enum RoadType { state, regional, areal, local }
     public enum Availability { unavailable, available }
-    public class HighWay
+    public class HighWay : IComparable<HighWay>
     {
         protected string _nameHighway;
         protected RoadType _roadType;
@@ -57,5 +57,16 @@ namespace Highway.Models
             this._banquette = (Availability)Enum.Parse(typeof(Availability), banquette, true);
             this._roadDivider = (Availability)Enum.Parse(typeof(Availability), roadDivider, true);
         }
+
+        public int CompareTo(HighWay obj)
+        {
+            return this.RoadLength.CompareTo(obj.RoadLength);
+        }
+        public override string ToString()
+        {
+            return _nameHighway; // + " " + _roadType + " " + _roadLength + " " + _numberLanes + " " +
+            //    _banquette + " " + _roadDivider;
+        }
+
     }
 }

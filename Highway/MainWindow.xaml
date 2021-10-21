@@ -39,7 +39,7 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid Margin="297,440,0,0">
+        <Grid Margin="65,440,0,0">
             <Grid x:Name="PanelToMove" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 

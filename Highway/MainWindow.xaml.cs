@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Media;
 using System.Windows.Media.Animation;
 using Highway.Models;
+using Highway.UserControls;
+using System.Data;
 
 namespace Highway
 {
@@ -43,6 +34,9 @@ namespace Highway
             fade.To = new Thickness(Table.Margin.Left, Table.Margin.Top, Table.Margin.Right + 232, Table.Margin.Bottom);
             fade.Duration = new Duration(TimeSpan.FromMilliseconds(200));
             Table.BeginAnimation(Grid.MarginProperty, fade);
+            PanelToMove.BeginAnimation(Grid.MarginProperty, fade);
+            UpdateTable table = new UpdateTable();
+            table.UpDateHighways(highwaysList);           
         }
 
         private void ButtonFechar_Click(object sender, RoutedEventArgs e)
@@ -65,11 +59,12 @@ namespace Highway
             {
                 case 0:
                     PanelToMove.Children.Clear();
-                    PanelToMove.Children.Add(new UserControlInitial());
+                    //PanelToMove.Children.Add(new UserControlInitial());
+                    PanelToMove.Children.Add(new UserControlSort());
                     break;
                 case 1:
                     PanelToMove.Children.Clear();
-                    PanelToMove.Children.Add(new UserControlInitial());
+                    PanelToMove.Children.Add(new UserControlFindShortestRoad());
                     break;
                 case 2:
                     PanelToMove.Children.Clear();
@@ -108,11 +103,13 @@ namespace Highway
 
             };
             Table.BeginAnimation(Grid.WidthProperty, fade1);
+            PanelToMove.BeginAnimation(Grid.WidthProperty, fade1);
             ThicknessAnimation fade2 = new ThicknessAnimation();
             fade2.From = Table.Margin;
             fade2.To = new Thickness(Table.Margin.Left, Table.Margin.Top, Table.Margin.Right + 232, Table.Margin.Bottom);
             fade2.Duration = new Duration(TimeSpan.FromMilliseconds(200));
             Table.BeginAnimation(Grid.MarginProperty, fade2);
+            PanelToMove.BeginAnimation(Grid.MarginProperty, fade2);
         }
 
         private void Tg_Btn_Checked(object sender, RoutedEventArgs e)
@@ -124,11 +121,13 @@ namespace Highway
                 Duration = TimeSpan.FromMilliseconds(0)
             };
             Table.BeginAnimation(Grid.WidthProperty, fade1);
+            PanelToMove.BeginAnimation(Grid.WidthProperty, fade1);
             ThicknessAnimation fade2 = new ThicknessAnimation();
             fade2.From = Table.Margin;
             fade2.To =  new Thickness(Table.Margin.Left, Table.Margin.Top, 0, Table.Margin.Bottom);
             fade2.Duration = new Duration(TimeSpan.FromMilliseconds(300));
             Table.BeginAnimation(Grid.MarginProperty, fade2);
+            PanelToMove.BeginAnimation(Grid.MarginProperty, fade2);
         }
     }
 }

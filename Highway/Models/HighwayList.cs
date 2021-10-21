@@ -8,12 +8,14 @@ namespace Highway.Models
 {
     public class HighwayList
     {
-        public List<HighWay> highwaysList;
+        private List<HighWay> highwaysList;
 
         public HighwayList()
         {
             highwaysList = new List<HighWay>();
         }
+        public int GetCurrentLength()
+        { return highwaysList.Count; }
         public void ReadFile()
         {
             try
@@ -82,7 +84,21 @@ namespace Highway.Models
                 return highwaysList[index];
             }
         }
-
-
+        public void Sort()
+        {
+            highwaysList.Sort();
+        }
+        public HighWay FindShortestRoadWithMostLanes()
+        {
+            HighWay minHighway = highwaysList[0];
+            for(int i = 0; i < highwaysList.Count; ++i)
+            {
+                if (minHighway.NumberLanes < highwaysList[i].NumberLanes ||
+                    (minHighway.NumberLanes == highwaysList[i].NumberLanes &&
+                    minHighway.RoadLength > highwaysList[i].RoadLength))
+                    minHighway = highwaysList[i];
+            }
+            return minHighway;
+        }
     }
 }

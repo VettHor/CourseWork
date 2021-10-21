@@ -16,8 +16,6 @@
                     <Setter Property="Foreground" Value="White"/>
                 </Style>
             </DataGrid.Resources>
-            <!--<DataGrid.Resources>
-            </DataGrid.Resources>-->
         </DataGrid>
     </Grid>
 </UserControl>
