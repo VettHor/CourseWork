@@ -95,6 +95,9 @@
     <Compile Include="UserControls\UserControlFindShortestRoad.xaml.cs">
       <DependentUpon>UserControlFindShortestRoad.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UserControlGroupedSepRoad.xaml.cs">
+      <DependentUpon>UserControlGroupedSepRoad.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UserControlSort.xaml.cs">
       <DependentUpon>UserControlSort.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\UserControlFindShortestRoad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlGroupedSepRoad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

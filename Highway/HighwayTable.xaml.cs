@@ -31,7 +31,6 @@ namespace Highway
             dataTable.Columns.Add(new DataColumn("Lanes", typeof(uint)));
             dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Divider", typeof(string)));
-
             DataRow rows; HighWay highway;
             for (int i = 0; i < list.GetCurrentLength(); ++i)
             {
@@ -52,7 +51,7 @@ namespace Highway
                 column.IsReadOnly = true;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
-            RoadTable.Columns[0].Width = new DataGridLength(0.5, DataGridLengthUnitType.Star);
+            RoadTable.Columns[0].Width = new DataGridLength(0.6, DataGridLengthUnitType.Star);
             RoadTable.Columns[1].Width = new DataGridLength(1.5, DataGridLengthUnitType.Star);
             RoadTable.CanUserAddRows = false;
             RoadTable.CanUserDeleteRows = false;

@@ -20,6 +20,7 @@ namespace Highway
         {
             //updateTable.UpDateHighways(new HighwayList());
             MainWindow.highwaysList.ReadFile();
+            //HighwayTable highwayTable = new HighwayTable(MainWindow.highwaysList);
             updateTable.UpDateHighways(MainWindow.highwaysList);
         }
     }

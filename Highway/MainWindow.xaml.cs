@@ -5,7 +5,6 @@ using System.Windows.Input;
 using System.Windows.Media.Animation;
 using Highway.Models;
 using Highway.UserControls;
-using System.Data;
 
 namespace Highway
 {
@@ -68,7 +67,7 @@ namespace Highway
                     break;
                 case 2:
                     PanelToMove.Children.Clear();
-                    PanelToMove.Children.Add(new UserControlInitial());
+                    PanelToMove.Children.Add(new UserControlGroupedSepRoad());
                     break;
                 case 3:
                     PanelToMove.Children.Clear();

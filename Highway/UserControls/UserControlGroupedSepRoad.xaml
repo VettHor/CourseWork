@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Highway.UserControls.UserControlFindShortestRoad"
+﻿<UserControl x:Class="Highway.UserControls.UserControlGroupedSepRoad"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -13,17 +13,17 @@
                 <Button
                 Style="{StaticResource RoundButtonTemplate}"
                 BorderBrush="#fff"
-                Name="FindShortestRoadMostLanes"
-                Content="Find shortest road &#xa;  with most lanes"
+                Name="FindAllGroupedRoadsWithSeparetorMore2Lanes"
+                Content="     Find all roads with separetor,&#xa; more than 2 lines and group them"
                 FontSize="30"
-                FontFamily="Palatino Linotype" Margin="245,0,10,239.6" Click="FindShortestRoadMostLanes_Click"
+                FontFamily="Palatino Linotype" Margin="180,0,10,239.6" Click="FindAllGroupedRoadsWithSeparetorMore2Lanes_Click"
             />
             </materialDesign:TransitioningContent>
         </Grid>
 
-            <StackPanel Orientation="Horizontal" Margin="245,90,10,135.6">
-                <materialDesign:TransitioningContent x:Name="SecondTrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
-                    <TextBox 
+        <StackPanel Orientation="Horizontal" Margin="245,90,10,135.6">
+            <materialDesign:TransitioningContent x:Name="SecondTrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
+                <TextBox 
                         Name="RoadPrint" 
                         Style="{StaticResource Textbox}" 
                         Width="395" 
@@ -33,7 +33,7 @@
                         IsReadOnly="True"
                         FontFamily="Palatino Linotype"
                         FontSize="30"/>
-                </materialDesign:TransitioningContent>
-            </StackPanel>
+            </materialDesign:TransitioningContent>
+        </StackPanel>
     </Grid>
 </UserControl>

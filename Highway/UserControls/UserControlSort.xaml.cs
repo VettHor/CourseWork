@@ -9,7 +9,6 @@ namespace Highway.UserControls
     /// </summary>
     public partial class UserControlSort : UserControl
     {
-        UpdateTable updateTable;
         public UserControlSort()
         {
             InitializeComponent();
@@ -18,7 +17,7 @@ namespace Highway.UserControls
         private void SortButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.highwaysList.Sort();
-            updateTable = new UpdateTable();
+            UpdateTable updateTable = new UpdateTable();
             updateTable.UpDateHighways(MainWindow.highwaysList);
         }
     }
