@@ -73,6 +73,32 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+
+            <Style x:Key="ReadOnlyGridStyle" TargetType="{x:Type DataGrid}" >
+                <Setter Property="AutoGenerateColumns" Value="False" />
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="GridLinesVisibility" Value="None" />
+                <Setter Property="CanUserAddRows" Value="False" />
+                <Setter Property="CanUserDeleteRows" Value="False" />
+                <Setter Property="CanUserResizeColumns" Value="False" />
+                <Setter Property="CanUserResizeRows" Value="False" />
+                <Setter Property="CanUserReorderColumns" Value="False" />
+                <Setter Property="ColumnHeaderStyle" Value="{StaticResource GridHeaderStyle}" />
+            </Style>
+
+            <DataTemplate x:Key="IngredientsCellTemplate" >
+                <DataGrid ItemsSource="{Binding Ingredients}" 
+                      Style="{StaticResource ReadOnlyGridStyle}" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Ingredients" Width="*" FontSize="12"
+                                        Binding="{Binding Path=IngredientName}" />
+                        <DataGridTextColumn Header="Quantite" Width="*" FontSize="12"
+                                        Binding="{Binding Path=Qty}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DataTemplate>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

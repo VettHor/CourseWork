@@ -55,6 +55,7 @@ namespace Highway
             RoadTable.Columns[1].Width = new DataGridLength(1.5, DataGridLengthUnitType.Star);
             RoadTable.CanUserAddRows = false;
             RoadTable.CanUserDeleteRows = false;
+            RoadTable.IsReadOnly = true;
         }
     }
 }
