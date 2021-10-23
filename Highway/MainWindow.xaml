@@ -144,8 +144,15 @@
                 </ListViewItem>
                 <ListViewItem Height="70">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Home" FontSize="25" VerticalAlignment="Center" Margin="20 0"/>
+                        <Image Source="Assets/openFile.png" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <!--<materialDesign:PackIcon Kind="Open" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>-->
+                        <TextBlock Text="Open file" FontSize="25" VerticalAlignment="Center" Margin="20 0"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Height="70">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Assets/saveFile.png" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Save to file" FontSize="25" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
             </ListView>

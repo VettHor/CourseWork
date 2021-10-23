@@ -64,8 +64,8 @@ namespace Highway.Models
         }
         public override string ToString()
         {
-            return _nameHighway; // + " " + _roadType + " " + _roadLength + " " + _numberLanes + " " +
-            //    _banquette + " " + _roadDivider;
+            return _nameHighway  + " " + _roadType + " " + _roadLength + " " + _numberLanes + " " +
+                _banquette + " " + _roadDivider;
         }
 
     }

@@ -58,28 +58,31 @@ namespace Highway
             {
                 case 0:
                     PanelToMove.Children.Clear();
-                    //PanelToMove.Children.Add(new UserControlInitial());
                     PanelToMove.Children.Add(new UserControlSort());
                     break;
                 case 1:
                     PanelToMove.Children.Clear();
-                    PanelToMove.Children.Add(new UserControlFindShortestRoad());
+                    PanelToMove.Children.Add(new UserControlShortestRoad());
                     break;
                 case 2:
                     PanelToMove.Children.Clear();
-                    PanelToMove.Children.Add(new UserControlGroupedSepRoad());
+                    PanelToMove.Children.Add(new UserControlGroupedRoad());
                     break;
                 case 3:
                     PanelToMove.Children.Clear();
-                    PanelToMove.Children.Add(new UserControlInitial());
+                    PanelToMove.Children.Add(new UserControlRegionalRoads());
                     break;
                 case 4:
                     PanelToMove.Children.Clear();
                     PanelToMove.Children.Add(new UserControlInitial());
                     break;
                 case 5:
-                    PanelToMove.Children.Clear();
-                    PanelToMove.Children.Add(new UserControlInitial());
+                    MainWindow.highwaysList.ReadFile();
+                    UpdateTable updateTable = new UpdateTable();
+                    updateTable.UpDateHighways(MainWindow.highwaysList);
+                    break;
+                case 6:
+                    MainWindow.highwaysList.WriteToFile();
                     break;
                 default:
                     break;

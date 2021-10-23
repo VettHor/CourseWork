@@ -73,6 +73,26 @@ namespace Highway.Models
                 Console.WriteLine(e.Message);
             }
         }
+
+        public void WriteToFile()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text Files|*.txt";
+            saveFileDialog.FileName = "Table";
+            saveFileDialog.Title = "Save Road Table";
+            if(saveFileDialog.ShowDialog() == true)
+            {
+                string path = saveFileDialog.FileName;
+                using (FileStream fs = File.Create(path))
+                {
+                    Byte[] title = new System.Text.UTF8Encoding(true).GetBytes(ToString());
+                    fs.Write(title, 0, title.Length);
+                }
+                //BinaryWriter binaryWriter = new BinaryWriter(File.Create(path));
+                //binaryWriter.Write(ToString());
+                //binaryWriter.Dispose();
+            }
+        }
         public HighWay this[int index]
         {
             get
@@ -100,23 +120,67 @@ namespace Highway.Models
             }
             return minHighway;
         }
-        public List<HighwayList> FindGroupedSeparatedRoadsMoreTwoLines()
+        public Dictionary<RoadType, HighwayList> FindGroupedSeparatedRoadsMoreTwoLines()
         {
-            List<HighwayList> GroupedHighwayLists = new List<HighwayList>();
+            //List<HighwayList> GroupedHighwayLists = new List<HighwayList>();
+            //RoadType currRoadType;
+            //for(int i = 0; i < roadTypesCount; ++i)
+            //{
+            //    currRoadType = (RoadType)i;
+            //    GroupedHighwayLists.Add(new HighwayList());
+            //    for (int j = 0; j < highwaysList.Count; ++j)
+            //    {
+            //        if(highwaysList[j].RoadType == currRoadType)
+            //        {
+            //            GroupedHighwayLists[i].highwaysList.Add(highwaysList[j]);
+            //        }
+            //    }
+            //}
+            //return GroupedHighwayLists;
+            Dictionary<RoadType, HighwayList> GroupedHighwayLists = new Dictionary<RoadType, HighwayList>();
+
+            //List<HighwayList> GroupedHighwayLists = new List<HighwayList>();
             RoadType currRoadType;
-            for(int i = 0; i < roadTypesCount; ++i)
+            for (int i = 0; i < roadTypesCount; ++i)
             {
                 currRoadType = (RoadType)i;
-                GroupedHighwayLists.Add(new HighwayList());
+                GroupedHighwayLists.Add(currRoadType, new HighwayList());
                 for (int j = 0; j < highwaysList.Count; ++j)
-                {
-                    if(highwaysList[j].RoadType == currRoadType)
-                    {
-                        GroupedHighwayLists[i].highwaysList.Add(highwaysList[j]);
-                    }
-                }
+                    if (highwaysList[j].RoadType == currRoadType && 
+                        highwaysList[j].RoadDivider == Availability.available && 
+                        highwaysList[j].NumberLanes > 2)
+                        GroupedHighwayLists[currRoadType].highwaysList.Add(highwaysList[j]);
             }
             return GroupedHighwayLists;
         }
+
+        public HighwayList FindRegionalRoadsMostLanesCrosswalkAvailable()
+        {
+            HighwayList regionalRoadsList = new HighwayList();
+            uint maxLanesCount = 0;
+            for (int i = 0; i < highwaysList.Count; ++i)
+            {
+                if(highwaysList[i].RoadType == RoadType.regional &&
+                    highwaysList[i].Banquette == Availability.available)
+                {
+                    if (maxLanesCount < highwaysList[i].NumberLanes)
+                    {
+                        maxLanesCount = highwaysList[i].NumberLanes;
+                        regionalRoadsList.highwaysList.Clear();
+                    }
+                    if(maxLanesCount == highwaysList[i].NumberLanes)
+                        regionalRoadsList.highwaysList.Add(highwaysList[i]);
+                }
+            }
+            return regionalRoadsList;
+        }
+        public override string ToString()
+        {
+            string print = "";
+            for (int i = 0; i < highwaysList.Count; ++i)
+                print += highwaysList[i] + "\n";
+            return print;
+        }
+
     }
 }

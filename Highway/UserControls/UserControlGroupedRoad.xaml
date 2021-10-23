@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Highway.UserControls.UserControlGroupedSepRoad"
+﻿<UserControl x:Class="Highway.UserControls.UserControlGroupedRoad"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -13,10 +13,10 @@
                 <Button
                 Style="{StaticResource RoundButtonTemplate}"
                 BorderBrush="#fff"
-                Name="FindAllGroupedRoadsWithSeparetorMore2Lanes"
+                Name="FindGroupedSeparatedRoadsMoreTwoLines"
                 Content="     Find all roads with separetor,&#xa; more than 2 lines and group them"
                 FontSize="30"
-                FontFamily="Palatino Linotype" Margin="190,40,0,199.6" Click="FindAllGroupedRoadsWithSeparetorMore2Lanes_Click"
+                FontFamily="Palatino Linotype" Margin="190,40,0,199.6" Click="FindGroupedSeparatedRoadsMoreTwoLines_Click"
             />
             </materialDesign:TransitioningContent>
         </Grid>

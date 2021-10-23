@@ -19,9 +19,9 @@ namespace Highway.UserControls
     /// <summary>
     /// Interaction logic for UserControlFindShortestRoad.xaml
     /// </summary>
-    public partial class UserControlFindShortestRoad : UserControl
+    public partial class UserControlShortestRoad : UserControl
     {
-        public UserControlFindShortestRoad()
+        public UserControlShortestRoad()
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace Highway.UserControls
         private void FindShortestRoadMostLanes_Click(object sender, RoutedEventArgs e)
         {
             UpdateTable updateTable = new UpdateTable();
-            RoadPrint.Text = MainWindow.highwaysList.FindShortestRoadWithMostLanes().ToString();
+            RoadPrint.Text = MainWindow.highwaysList.FindShortestRoadWithMostLanes().NameHighway;
         }
     }
 }
