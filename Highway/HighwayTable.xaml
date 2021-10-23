@@ -9,13 +9,6 @@
              Height="280" Width="499.9">
     <Grid>
         <DataGrid Name="RoadTable" Height="auto" Width="auto" FontFamily="Palatino Linotype" FontSize="17" Background="#FFEEEEEE">
-            <DataGrid.Resources>
-                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
-                    <Setter Property="Background" Value="#FFC00000"/>
-                    <Setter Property="FontSize" Value="20"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Style>
-            </DataGrid.Resources>
         </DataGrid>
     </Grid>
 </UserControl>

@@ -18,9 +18,7 @@ namespace Highway
         }
         public void OnButtonClick(object sender, RoutedEventArgs e)
         {
-            //updateTable.UpDateHighways(new HighwayList());
             MainWindow.highwaysList.ReadFile();
-            //HighwayTable highwayTable = new HighwayTable(MainWindow.highwaysList);
             updateTable.UpDateHighways(MainWindow.highwaysList);
         }
     }

@@ -9,7 +9,7 @@ namespace Highway.Models
     public class HighwayList
     {
         private List<HighWay> highwaysList;
-
+        private const int roadTypesCount = 4;
         public HighwayList()
         {
             highwaysList = new List<HighWay>();
@@ -99,6 +99,24 @@ namespace Highway.Models
                     minHighway = highwaysList[i];
             }
             return minHighway;
+        }
+        public List<HighwayList> FindGroupedSeparatedRoadsMoreTwoLines()
+        {
+            List<HighwayList> GroupedHighwayLists = new List<HighwayList>();
+            RoadType currRoadType;
+            for(int i = 0; i < roadTypesCount; ++i)
+            {
+                currRoadType = (RoadType)i;
+                GroupedHighwayLists.Add(new HighwayList());
+                for (int j = 0; j < highwaysList.Count; ++j)
+                {
+                    if(highwaysList[j].RoadType == currRoadType)
+                    {
+                        GroupedHighwayLists[i].highwaysList.Add(highwaysList[j]);
+                    }
+                }
+            }
+            return GroupedHighwayLists;
         }
     }
 }

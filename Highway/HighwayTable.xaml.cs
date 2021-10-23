@@ -48,7 +48,6 @@ namespace Highway
             RoadTable.ItemsSource = dataTable.DefaultView;
             foreach (var column in RoadTable.Columns)
             {
-                column.IsReadOnly = true;
                 column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             }
             RoadTable.Columns[0].Width = new DataGridLength(0.6, DataGridLengthUnitType.Star);
@@ -56,6 +55,9 @@ namespace Highway
             RoadTable.CanUserAddRows = false;
             RoadTable.CanUserDeleteRows = false;
             RoadTable.IsReadOnly = true;
+            RoadTable.CanUserResizeColumns = false;
+            RoadTable.CanUserResizeRows = false;
+            RoadTable.CanUserReorderColumns = false;
         }
     }
 }

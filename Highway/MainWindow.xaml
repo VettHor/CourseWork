@@ -66,7 +66,7 @@
                                       Width="40"
                                       BorderThickness="0"
                                       Unchecked="Tg_Btn_Unchecked" Checked="Tg_Btn_Checked">
-                <Image Source="Assets/menu-4-xxl.png" Stretch="None"/>
+                <Image Source="Assets/user-menu.png" Stretch="None"/>
                 <ToggleButton.Triggers>
                     <EventTrigger RoutedEvent="ToggleButton.Checked">
                         <BeginStoryboard>

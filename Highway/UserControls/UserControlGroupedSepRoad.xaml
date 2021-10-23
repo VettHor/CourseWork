@@ -16,24 +16,9 @@
                 Name="FindAllGroupedRoadsWithSeparetorMore2Lanes"
                 Content="     Find all roads with separetor,&#xa; more than 2 lines and group them"
                 FontSize="30"
-                FontFamily="Palatino Linotype" Margin="180,0,10,239.6" Click="FindAllGroupedRoadsWithSeparetorMore2Lanes_Click"
+                FontFamily="Palatino Linotype" Margin="190,40,0,199.6" Click="FindAllGroupedRoadsWithSeparetorMore2Lanes_Click"
             />
             </materialDesign:TransitioningContent>
         </Grid>
-
-        <StackPanel Orientation="Horizontal" Margin="245,90,10,135.6">
-            <materialDesign:TransitioningContent x:Name="SecondTrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
-                <TextBox 
-                        Name="RoadPrint" 
-                        Style="{StaticResource Textbox}" 
-                        Width="395" 
-                        VerticalScrollBarVisibility="Auto" 
-                        AcceptsReturn="True" 
-                        TextWrapping="Wrap"
-                        IsReadOnly="True"
-                        FontFamily="Palatino Linotype"
-                        FontSize="30"/>
-            </materialDesign:TransitioningContent>
-        </StackPanel>
     </Grid>
 </UserControl>
