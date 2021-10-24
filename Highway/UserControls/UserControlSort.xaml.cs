@@ -16,9 +16,9 @@ namespace Highway.UserControls
 
         private void SortButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.highwaysList.Sort();
+            MainWindow._highwaysList.Sort();
             UpdateTable updateTable = new UpdateTable();
-            updateTable.UpDateHighways(MainWindow.highwaysList);
+            updateTable.UpDateHighways(MainWindow._highwaysList);
         }
     }
 }

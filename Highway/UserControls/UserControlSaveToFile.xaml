@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Highway.UserControls.UserControlSaveToFile"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Highway.UserControls"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Height="329.8" Width="660">
+    <Grid>
+        <Grid>
+            <materialDesign:TransitioningContent x:Name="TrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
+                <Button
+                Style="{StaticResource RoundButtonTemplate}"
+                BorderBrush="#fff"
+                Name="SaveToFileAllRoads"
+                Content="Save to file all roads"
+                FontSize="30"
+                FontFamily="Palatino Linotype" Margin="190,40,0,199.6" Click="SaveToFileAllRoads_Click"
+            />
+            </materialDesign:TransitioningContent>
+        </Grid>
+    </Grid>
+</UserControl>

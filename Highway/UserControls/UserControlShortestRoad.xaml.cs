@@ -29,7 +29,7 @@ namespace Highway.UserControls
         private void FindShortestRoadMostLanes_Click(object sender, RoutedEventArgs e)
         {
             UpdateTable updateTable = new UpdateTable();
-            RoadPrint.Text = MainWindow.highwaysList.FindShortestRoadWithMostLanes().NameHighway;
+            RoadPrint.Text = MainWindow._highwaysList.FindShortestRoadWithMostLanes().NameHighway;
         }
     }
 }

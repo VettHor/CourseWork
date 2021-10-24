@@ -41,7 +41,7 @@ namespace Highway.UserControls
             //dataTable.Columns.Add(new DataColumn("Divider", typeof(string)));
             //DataRow rows; HighWay highway; int currLength;
             //List<HighwayList> GroupedHighwayList = new List<HighwayList>();
-            //GroupedHighwayList = MainWindow.highwaysList.FindGroupedSeparatedRoadsMoreTwoLines();
+            //GroupedHighwayList = MainWindow._highwaysList.FindGroupedSeparatedRoadsMoreTwoLines();
             //for (int i = 0; i < GroupedHighwayList.Count; ++i)
             //{
             //    currLength = GroupedHighwayList[i].GetCurrentLength();
@@ -67,7 +67,7 @@ namespace Highway.UserControls
 
             DataGrid datagrid = new DataGrid();
             DataTable dataTable = new DataTable();
-            dataTable.Columns.Add(new DataColumn("№", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("№", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Type", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Length", typeof(uint)));
@@ -75,9 +75,13 @@ namespace Highway.UserControls
             dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Divider", typeof(string)));
             DataRow rows; HighWay highway; int currLength;
-            Dictionary<RoadType, HighwayList> GroupedHighwayLists = MainWindow.highwaysList.FindGroupedSeparatedRoadsMoreTwoLines();
+            Dictionary<RoadType, HighwayList> GroupedHighwayLists = MainWindow._highwaysList.FindGroupedSeparatedRoadsMoreTwoLines();
             for (RoadType i = 0; i <= RoadType.local; ++i)
             {
+                if (GroupedHighwayLists[i].GetCurrentLength() == 0) continue;
+                rows = dataTable.NewRow();
+                rows[0] = i;
+                dataTable.Rows.Add(rows);
                 currLength = GroupedHighwayLists[i].GetCurrentLength();
                 for (int j = 0; j < currLength; ++j)
                 {
@@ -92,11 +96,6 @@ namespace Highway.UserControls
                     rows[6] = highway.RoadDivider;
                     dataTable.Rows.Add(rows);
                 }
-                if (i != RoadType.local && currLength != 0)
-                {
-                    rows = dataTable.NewRow();
-                    dataTable.Rows.Add(rows);
-                }
             }
 
             //DataGrid datagrid = new DataGrid();
@@ -109,10 +108,10 @@ namespace Highway.UserControls
             //dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
             //dataTable.Columns.Add(new DataColumn("Divider", typeof(string)));
             //DataRow rows; HighWay highway;
-            //for (int i = 0; i < MainWindow.highwaysList.GetCurrentLength(); ++i)
+            //for (int i = 0; i < MainWindow._highwaysList.GetCurrentLength(); ++i)
             //{
             //    rows = dataTable.NewRow();
-            //    highway = MainWindow.highwaysList[i];
+            //    highway = MainWindow._highwaysList[i];
             //    rows[0] = i + 1;
             //    rows[1] = highway.NameHighway;
             //    rows[2] = highway.RoadType;

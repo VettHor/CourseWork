@@ -13,13 +13,13 @@ namespace Highway
     /// </summary>
     public partial class MainWindow : Window
     {
-        static public HighwayList highwaysList; // to keep all changes
+        static public HighwayList _highwaysList; // to keep all changes
         const int from = 492;
         const int add = 232;
         public MainWindow()
         {
             InitializeComponent();
-            highwaysList = new HighwayList();
+            _highwaysList = new HighwayList();
             nav_pnl.Width = 65;
             DoubleAnimation fade2 = new DoubleAnimation()
             {
@@ -35,7 +35,7 @@ namespace Highway
             Table.BeginAnimation(Grid.MarginProperty, fade);
             PanelToMove.BeginAnimation(Grid.MarginProperty, fade);
             UpdateTable table = new UpdateTable();
-            table.UpDateHighways(highwaysList);           
+            table.UpDateHighways(_highwaysList);           
         }
 
         private void ButtonFechar_Click(object sender, RoutedEventArgs e)
@@ -70,19 +70,19 @@ namespace Highway
                     break;
                 case 3:
                     PanelToMove.Children.Clear();
-                    PanelToMove.Children.Add(new UserControlRegionalRoads());
+                    PanelToMove.Children.Add(new UserControlLongestRoadBanquette());
                     break;
                 case 4:
                     PanelToMove.Children.Clear();
-                    PanelToMove.Children.Add(new UserControlInitial());
+                    PanelToMove.Children.Add(new UserControlRegionalRoads());
                     break;
                 case 5:
-                    MainWindow.highwaysList.ReadFile();
-                    UpdateTable updateTable = new UpdateTable();
-                    updateTable.UpDateHighways(MainWindow.highwaysList);
+                    PanelToMove.Children.Clear();
+                    PanelToMove.Children.Add(new UserControlOpenFile());
                     break;
                 case 6:
-                    MainWindow.highwaysList.WriteToFile();
+                    PanelToMove.Children.Clear();
+                    PanelToMove.Children.Add(new UserControlSaveToFile());
                     break;
                 default:
                     break;

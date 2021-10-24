@@ -92,6 +92,15 @@
     <Compile Include="UserControlInitial.xaml.cs">
       <DependentUpon>UserControlInitial.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UserControlLongestRoadBanquette.xaml.cs">
+      <DependentUpon>UserControlLongestRoadBanquette.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlOpenFile.xaml.cs">
+      <DependentUpon>UserControlOpenFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlSaveToFile.xaml.cs">
+      <DependentUpon>UserControlSaveToFile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UserControlShortestRoad.xaml.cs">
       <DependentUpon>UserControlShortestRoad.xaml</DependentUpon>
     </Compile>
@@ -121,6 +130,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControlInitial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlLongestRoadBanquette.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlOpenFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlSaveToFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -23,7 +23,7 @@
                         </TextBlock>
                     </StackPanel>
                 </StackPanel>
-                <Image Margin="10" Width="200" Height="200" Source="Assets/Actions-list-add-user-icon.png" Stretch="UniformToFill"/>
+                <Image Margin="10" Width="200" Height="200" Source="Assets/road.png" Stretch="UniformToFill"/>
             </StackPanel>
         </materialDesign:TransitioningContent>
     </Grid>
