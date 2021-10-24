@@ -20,6 +20,26 @@ namespace Highway.UserControls
 
         private void FindRegionalRoadsMostLanesCrosswalkAvailable_Click(object sender, RoutedEventArgs e)
         {
+            if (MainWindow._highwaysList.GetCurrentLength() == 0)
+            {
+                MessageBox.Show(
+                    "Cannot find roads in HigwayTable, it is empty",
+                    "Find information",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+            HighwayList regionalRoadsList = MainWindow._highwaysList.FindRegionalRoadsMostLanesCrosswalkAvailable();
+            if (regionalRoadsList.GetCurrentLength() == 0)
+            {
+                MessageBox.Show(
+                    "There is no such roads",
+                    "Find information",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                return;
+            }
+
             Grid DynamicGrid = new Grid();
             DynamicGrid.Width = double.NaN;
             DynamicGrid.MaxHeight = 450;
@@ -36,9 +56,9 @@ namespace Highway.UserControls
             dataTable.Columns.Add(new DataColumn("Length", typeof(uint)));
             dataTable.Columns.Add(new DataColumn("Lanes", typeof(uint)));
             dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
-            dataTable.Columns.Add(new DataColumn("Divider", typeof(string)));
+            dataTable.Columns.Add(new DataColumn("Separator", typeof(string)));
             DataRow rows; HighWay highway; int Length;
-            HighwayList regionalRoadsList = MainWindow._highwaysList.FindRegionalRoadsMostLanesCrosswalkAvailable();
+            
             Length = regionalRoadsList.GetCurrentLength();
             for (int i = 0; i < Length; ++i)
             {
@@ -50,7 +70,7 @@ namespace Highway.UserControls
                 rows[3] = highway.RoadLength;
                 rows[4] = highway.NumberLanes;
                 rows[5] = highway.Banquette;
-                rows[6] = highway.RoadDivider;
+                rows[6] = highway.RoadSeparator;
                 dataTable.Rows.Add(rows);
             }
             datagrid.ItemsSource = dataTable.DefaultView;

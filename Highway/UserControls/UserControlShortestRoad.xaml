@@ -16,12 +16,12 @@
                 Name="FindShortestRoadMostLanes"
                 Content="Find shortest road &#xa;  with most lanes"
                 FontSize="30"
-                FontFamily="Palatino Linotype" Margin="245,0,10,239.6" Click="FindShortestRoadMostLanes_Click"
+                FontFamily="Palatino Linotype" Margin="245,50,10,189.6" Click="FindShortestRoadMostLanes_Click"
             />
             </materialDesign:TransitioningContent>
         </Grid>
 
-            <StackPanel Orientation="Horizontal" Margin="245,90,10,135.6">
+            <!--<StackPanel Orientation="Horizontal" Margin="245,90,10,135.6">
                 <materialDesign:TransitioningContent x:Name="SecondTrainsitionContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.8}">
                     <TextBox 
                         Name="RoadPrint" 
@@ -34,6 +34,6 @@
                         FontFamily="Palatino Linotype"
                         FontSize="30"/>
                 </materialDesign:TransitioningContent>
-            </StackPanel>
+            </StackPanel>-->
     </Grid>
 </UserControl>

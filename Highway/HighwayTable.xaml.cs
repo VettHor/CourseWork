@@ -12,17 +12,22 @@ namespace Highway
     /// </summary>
     public partial class HighwayTable : UserControl
     {
-        readonly UpdateTable updateTable;
+        readonly _updateTable _updateTable;
         public HighwayTable()
         {
             InitializeComponent();
-            updateTable = new UpdateTable();
-            UpdateTable.HighWaysFill += onTableUpdate;
+            _updateTable = new _updateTable();
+            _updateTable.HighWaysFill += onTableUpdate;
         }
 
         private void onTableUpdate(HighwayList list)
         {
-            if (list.GetCurrentLength() == 0) return;
+            if (list.GetCurrentLength() == 0)
+            {
+                RoadTable.ItemsSource = null;
+                RoadTable.Items.Clear();
+                return;
+            }
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn("№", typeof(int)));
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
@@ -30,7 +35,7 @@ namespace Highway
             dataTable.Columns.Add(new DataColumn("Length", typeof(uint)));
             dataTable.Columns.Add(new DataColumn("Lanes", typeof(uint)));
             dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
-            dataTable.Columns.Add(new DataColumn("Divider", typeof(string)));
+            dataTable.Columns.Add(new DataColumn("Separator", typeof(string)));
             DataRow rows; HighWay highway;
             for (int i = 0; i < list.GetCurrentLength(); ++i)
             {
@@ -42,7 +47,7 @@ namespace Highway
                 rows[3] = highway.RoadLength;
                 rows[4] = highway.NumberLanes;
                 rows[5] = highway.Banquette;
-                rows[6] = highway.RoadDivider;
+                rows[6] = highway.RoadSeparator;
                 dataTable.Rows.Add(rows);
             }
             RoadTable.ItemsSource = dataTable.DefaultView;

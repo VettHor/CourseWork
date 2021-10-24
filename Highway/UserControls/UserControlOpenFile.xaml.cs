@@ -20,8 +20,8 @@ namespace Highway.UserControls
             {
                 if (MainWindow._highwaysList.ReadFile())
                 {
-                    UpdateTable updateTable = new UpdateTable();
-                    updateTable.UpDateHighways(MainWindow._highwaysList);
+                    _updateTable _updateTable = new _updateTable();
+                    _updateTable.UpDateHighways(MainWindow._highwaysList);
                     MessageBox.Show(
                         "Successfully read data from file",
                         "Input information",

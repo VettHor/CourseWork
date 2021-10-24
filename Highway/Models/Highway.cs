@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Highway.Models
 {
@@ -10,17 +6,17 @@ namespace Highway.Models
     public enum Availability { unavailable, available }
     public class HighWay : IComparable<HighWay>
     {
-        protected string _nameHighway;
+        protected string _roadName;
         protected RoadType _roadType;
         protected uint _roadLength;
-        protected uint _numberLanes;
-        protected Availability _banquette;
-        protected Availability _roadDivider;
+        protected uint _roadCountLanes;
+        protected Availability _roadBanquette;
+        protected Availability _roadSeparator;
 
         public string NameHighway
         {
-            get => _nameHighway;
-            set => _nameHighway = value;
+            get => _roadName;
+            set => _roadName = value;
         }
         public RoadType RoadType
         {
@@ -34,28 +30,28 @@ namespace Highway.Models
         }
         public uint NumberLanes
         {
-            get => _numberLanes;
-            set => _numberLanes = value;
+            get => _roadCountLanes;
+            set => _roadCountLanes = value;
         }
         public Availability Banquette
         {
-            get => _banquette;
-            set => _banquette = value;
+            get => _roadBanquette;
+            set => _roadBanquette = value;
         }
-        public Availability RoadDivider
+        public Availability RoadSeparator
         {
-            get => _roadDivider;
-            set => _roadDivider = value;
+            get => _roadSeparator;
+            set => _roadSeparator = value;
         }
         public HighWay(string nameHighway = "", string roadType = "", uint roadLength = 0, 
-            uint numberLanes = 0, string banquette = "", string roadDivider = "")
+            uint numberLanes = 0, string banquette = "", string roadSeparator = "")
         {
-            this._nameHighway = nameHighway;
+            this._roadName = nameHighway;
             this._roadType = (RoadType)Enum.Parse(typeof(RoadType), roadType, true);
             this._roadLength = roadLength;
-            this._numberLanes = numberLanes;
-            this._banquette = (Availability)Enum.Parse(typeof(Availability), banquette, true);
-            this._roadDivider = (Availability)Enum.Parse(typeof(Availability), roadDivider, true);
+            this._roadCountLanes = numberLanes;
+            this._roadBanquette = (Availability)Enum.Parse(typeof(Availability), banquette, true);
+            this._roadSeparator = (Availability)Enum.Parse(typeof(Availability), roadSeparator, true);
         }
 
         public int CompareTo(HighWay obj)
@@ -64,7 +60,7 @@ namespace Highway.Models
         }
         public override string ToString()
         {
-            return String.Format($"{_nameHighway} {_roadType} {_roadLength} {_numberLanes} {_banquette} {_roadDivider}");
+            return String.Format($"{_roadName} {_roadType} {_roadLength} {_roadCountLanes} {_roadBanquette} {_roadSeparator}");
         }
 
     }

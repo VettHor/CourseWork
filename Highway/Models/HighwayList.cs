@@ -10,7 +10,6 @@ namespace Highway.Models
     public class HighwayList
     {
         private List<HighWay> _highwaysList;
-        private const int roadTypesCount = 4;
         public HighwayList()
         {
             _highwaysList = new List<HighWay>();
@@ -37,7 +36,7 @@ namespace Highway.Models
             uint roadLength;
             uint numberLanes;
             Availability banquette = Availability.unavailable;
-            Availability roadDivider = Availability.unavailable;
+            Availability roadSeparator = Availability.unavailable;
             uint currLine = 0;
 
             using (StreamReader reader = new StreamReader(fileDialog.FileNames[0]))
@@ -64,11 +63,11 @@ namespace Highway.Models
                     banquette = (Availability)Enum.Parse(typeof(Availability), lineSplit[4], true);
                     if (!Enum.IsDefined(typeof(Availability), lineSplit[5]))
                         throw new FormatException(String.Format($"Wrong file format, an error has occurred in line {currLine}"));
-                    roadDivider = (Availability)Enum.Parse(typeof(Availability), lineSplit[5], true);
+                    roadSeparator = (Availability)Enum.Parse(typeof(Availability), lineSplit[5], true);
                     if(roadLength <= 0 || numberLanes <= 0 )
                         throw new FormatException(String.Format($"Wrong file format, an error has occurred in line {currLine}"));
 
-                    beforeHighwayList.Add(new HighWay(nameHighway, roadType.ToString(), roadLength, numberLanes, banquette.ToString(), roadDivider.ToString()));
+                    beforeHighwayList.Add(new HighWay(nameHighway, roadType.ToString(), roadLength, numberLanes, banquette.ToString(), roadSeparator.ToString()));
                 }
                 _highwaysList = beforeHighwayList;
             }
@@ -114,44 +113,39 @@ namespace Highway.Models
         {
             _highwaysList.Sort();
         }
-        public HighWay FindShortestRoadWithMostLanes()
+        public HighwayList FindShortestRoadWithMostLanes()
         {
-            HighWay minHighway = _highwaysList[0];
-            for (int i = 0; i < _highwaysList.Count; ++i)
+            if (GetCurrentLength() == 0) return null;
+            HighwayList minHighways = new HighwayList();
+            minHighways._highwaysList.Add(_highwaysList[0]);
+            int countHighWays = _highwaysList.Count;
+            if (countHighWays == 1) return minHighways;
+            for (int i = 1; i < _highwaysList.Count; ++i)
             {
-                if (minHighway.NumberLanes < _highwaysList[i].NumberLanes ||
-                    (minHighway.NumberLanes == _highwaysList[i].NumberLanes &&
-                    minHighway.RoadLength > _highwaysList[i].RoadLength))
-                    minHighway = _highwaysList[i];
+                if (minHighways[0].NumberLanes < _highwaysList[i].NumberLanes ||
+                    (minHighways[0].NumberLanes == _highwaysList[i].NumberLanes &&
+                    minHighways[0].RoadLength > _highwaysList[i].RoadLength))
+                {
+                    minHighways._highwaysList.Clear();
+                    minHighways._highwaysList.Add(_highwaysList[i]);
+                }
+                if(minHighways[0].NumberLanes == _highwaysList[i].NumberLanes &&
+                   minHighways[0].RoadLength == _highwaysList[i].RoadLength)
+                {
+                    minHighways._highwaysList.Add(_highwaysList[i]);
+                }
             }
-            return minHighway;
+            return minHighways;
         }
         public Dictionary<RoadType, HighwayList> FindGroupedSeparatedRoadsMoreTwoLines()
         {
-            //List<HighwayList> GroupedHighwayLists = new List<HighwayList>();
-            //RoadType currRoadType;
-            //for(int i = 0; i < roadTypesCount; ++i)
-            //{
-            //    currRoadType = (RoadType)i;
-            //    GroupedHighwayLists.Add(new HighwayList());
-            //    for (int j = 0; j < _highwaysList.Count; ++j)
-            //    {
-            //        if(_highwaysList[j].RoadType == currRoadType)
-            //        {
-            //            GroupedHighwayLists[i]._highwaysList.Add(_highwaysList[j]);
-            //        }
-            //    }
-            //}
-            //return GroupedHighwayLists;
             Dictionary<RoadType, HighwayList> GroupedHighwayLists = new Dictionary<RoadType, HighwayList>();
-
-            //List<HighwayList> GroupedHighwayLists = new List<HighwayList>();
             for (RoadType i = 0; i <= RoadType.local; ++i)
             {
                 GroupedHighwayLists.Add(i, new HighwayList());
                 for (int j = 0; j < _highwaysList.Count; ++j)
                     if (_highwaysList[j].RoadType == i &&
-                        _highwaysList[j].RoadDivider == Availability.available &&
+                        _highwaysList[j].RoadSeparator == Availability.available &&
                         _highwaysList[j].NumberLanes > 2)
                         GroupedHighwayLists[i]._highwaysList.Add(_highwaysList[j]);
             }
@@ -197,7 +191,7 @@ namespace Highway.Models
             };
             uint maxLength = 0;
             for (int i = 0; i < _highwaysList.Count; ++i)
-                if (_highwaysList[i].RoadDivider == Availability.available)
+                if (_highwaysList[i].RoadSeparator == Availability.available)
                 {
                     if (maxLength < _highwaysList[i].RoadLength)
                     {
@@ -211,24 +205,11 @@ namespace Highway.Models
                             if (_highwaysList[i].RoadType == j)
                                 roadTypes[j]._highwaysList.Add(_highwaysList[i]);
                 }
-
-            //uint maxLength = 0;
-            //for (RoadType i = 0; i < RoadType.local; ++i)
-            //{
-            //    roadTypes.Add(i, new HighwayList());
-            //    for (int j = 0; j < _highwaysList.Count; ++j)
-            //        if (_highwaysList[j].RoadType == i &&
-            //            _highwaysList[j].RoadDivider == Availability.available)
-            //        {
-            //            if (maxLength < _highwaysList[j].RoadLength)
-            //            {
-            //                roadTypes[i]._highwaysList.Clear();
-            //            }
-            //        }
-            //    roadTypes[i]._highwaysList.Add(_highwaysList[j]);
-            //}
-
             return roadTypes;
+        }
+        public void ClearList()
+        {
+            _highwaysList.Clear();
         }
     }
 }
