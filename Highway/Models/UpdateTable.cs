@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Highway.Models
 {
-    public class _updateTable
+    public class UpdateTable
     {
         public delegate void HighwayListEvent(HighwayList list);
         public static event HighwayListEvent HighWaysFill;

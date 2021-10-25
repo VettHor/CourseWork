@@ -26,8 +26,8 @@ namespace Highway.UserControls
                 return;
             }
             MainWindow._highwaysList.Sort();
-            _updateTable _updateTable = new _updateTable();
-            _updateTable.UpDateHighways(MainWindow._highwaysList);
+            UpdateTable UpdateTable = new UpdateTable();
+            UpdateTable.UpDateHighways(MainWindow._highwaysList);
         }
     }
 }

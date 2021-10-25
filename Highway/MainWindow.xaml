@@ -23,16 +23,16 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                    <Button Width="60" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Margin="0 0 10 0">
-                        <materialDesign:PackIcon Kind="QuestionMarkBox" Width="40" Height="40"/>
+                    <Button x:Name="AboutProgram" Width="60" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Margin="0 0 10 0" Click="AboutProgram_Click">
+                        <materialDesign:PackIcon Kind="QuestionMarkCircle" Width="40" Height="40"/>
                         <Button.ToolTip>
                             <ToolTip>
                                 About the program
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                    <Button x:Name="ButtonFechar" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Click="ButtonFechar_Click">
-                        <materialDesign:PackIcon Kind="Power" Width="40" Height="40"/>
+                    <Button x:Name="ButtonFechar" Width="45" Height="45" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Click="ButtonFechar_Click">
+                        <materialDesign:PackIcon Kind="Power" Width="45" Height="45"/>
                         <Button.ToolTip>
                             <ToolTip>
                                 Turn off the app
@@ -47,7 +47,7 @@
         <Grid Margin="65,69,0,195">
             <Grid x:Name="GridPrincipal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <ScrollViewer HorizontalScrollBarVisibility="Hidden" 
-                VerticalScrollBarVisibility="Hidden" Margin="0,-19,0,0">
+                VerticalScrollBarVisibility="Hidden">
                 <local:HighwayTable x:Name="Table" Grid.Row="1" Height="336" Width="724" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
             </ScrollViewer>
         </Grid>
@@ -129,43 +129,45 @@
             <ListView x:Name="ListViewMenu" Margin="0,100,0,5" Foreground="LightGray" FontFamily="Goudy Old Style" SelectionChanged="ListViewMenu_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListViewItem Height="70">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="Assets/openFile.png" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <!--FolderUpload-->
+                        <materialDesign:PackIcon Kind="TrayArrowUp" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Open file" FontSize="25" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="70">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="Assets/saveFile.png" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <!--FolderDownload-->
+                        <materialDesign:PackIcon Kind="TrayArrowDown" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Save to file" FontSize="25" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="70">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Sort" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <materialDesign:PackIcon Kind="Sort" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Sort with road &#xa;length" FontSize="25" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="70">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="ViewWeek" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <materialDesign:PackIcon Kind="ViewWeek" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Shortest road with &#xa;the most lanes" FontSize="25" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="70">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="ValveOpen" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <materialDesign:PackIcon Kind="ValveOpen" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Grouped roads &#xa;with separator" FontSize="25" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="70">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="HumanMaleFemaleChild" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <materialDesign:PackIcon Kind="HumanMaleFemaleChild" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Longest road types &#xa;with crosswalks" FontSize="25" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="70">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Cash" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <materialDesign:PackIcon Kind="Walker" Width="40" Height="40" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Regional roads with &#xa;crosswalks" FontSize="25" VerticalAlignment="Center" Margin="20 0"/>
                     </StackPanel>
                 </ListViewItem>

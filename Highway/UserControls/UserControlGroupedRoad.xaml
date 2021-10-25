@@ -13,10 +13,10 @@
                 <Button
                 Style="{StaticResource RoundButtonTemplate}"
                 BorderBrush="#fff"
-                Name="FindGroupedSeparatedRoadsMoreTwoLines"
+                Name="FindGroupedSeparatedRoadsMoreTwoLanes"
                 Content="     Find all roads with separetor,&#xa; more than 2 lines and group them"
                 FontSize="30"
-                FontFamily="Palatino Linotype" Margin="190,40,0,199.6" Click="FindGroupedSeparatedRoadsMoreTwoLines_Click"
+                FontFamily="Palatino Linotype" Margin="190,40,0,199.6" Click="FindGroupedSeparatedRoadsMoreTwoLanes_Click"
             />
             </materialDesign:TransitioningContent>
         </Grid>

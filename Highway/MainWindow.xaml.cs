@@ -35,8 +35,8 @@ namespace Highway
             PanelToMove.BeginAnimation(Grid.MarginProperty, fade);
             Table.BeginAnimation(Grid.WidthProperty, fade2);
             PanelToMove.BeginAnimation(Grid.WidthProperty, fade2);
-            _updateTable table = new _updateTable();
-            table.UpDateHighways(_highwaysList);
+            UpdateTable updateTable = new UpdateTable();
+            updateTable.UpDateHighways(MainWindow._highwaysList);
             PanelToMove.Children.Clear();
             PanelToMove.Children.Add(new UserControlOpenFile());
         }
@@ -147,20 +147,34 @@ namespace Highway
                 return;
             }
             if (MessageBox.Show(
-                        "Are you sure to delete HighwayTable? You cannot turn it back",
+                        String.Format($"Are you sure to delete HighwayTable with {HighWay.countRoads} roads? You cannot turn it back"),
                         "Delete HighwayTable",
                         MessageBoxButton.YesNoCancel,
                         MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 _highwaysList.ClearList();
-                _updateTable _updateTable = new _updateTable();
-                _updateTable.UpDateHighways(_highwaysList);
+                UpdateTable updateTable = new UpdateTable();
+                updateTable.UpDateHighways(MainWindow._highwaysList);
                 MessageBox.Show(
                             "Successfully deleted HigwayTable",
                             "Information",
                             MessageBoxButton.OK,
                             MessageBoxImage.Information);
             }
+        }
+
+        private void AboutProgram_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(
+                            "The program \"Highways\" is created to:\n" +
+                            "\t● Find shortest road with most lines\n" +
+                            "\t● Find all grouped roads with separator and more than 2 lines\n" +
+                            "\t● Find all road types with biggest length and banquette\n" +
+                            "\t● Find all regional roads with most lines and banquette\n" +
+                            "The program \"Highways\" is created by Horbovyi Vitalii",
+                            "About \"Highways\" Program",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.None);
         }
     }
 }

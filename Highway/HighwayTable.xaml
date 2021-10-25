@@ -9,6 +9,11 @@
              Height="280" Width="499.9">
     <Grid>
         <DataGrid Name="RoadTable" Height="auto" Width="auto" FontFamily="Palatino Linotype" FontSize="17" Background="#FFEEEEEE">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="AddRoadToTable" Header="Add road" Click="AddRoadToTable_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid>
     </Grid>
 </UserControl>

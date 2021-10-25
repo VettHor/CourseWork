@@ -56,8 +56,8 @@ namespace Highway.UserControls
             dataTable.Columns.Add(new DataColumn("№", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Type", typeof(string)));
-            dataTable.Columns.Add(new DataColumn("Length", typeof(uint)));
-            dataTable.Columns.Add(new DataColumn("Lanes", typeof(uint)));
+            dataTable.Columns.Add(new DataColumn("Length", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("Lanes", typeof(int)));
             dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Separator", typeof(string)));
             DataRow rows; HighWay highway; int currLength;

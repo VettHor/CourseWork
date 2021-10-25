@@ -85,11 +85,17 @@
     <Compile Include="HighwayTable.xaml.cs">
       <DependentUpon>HighwayTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Loading\LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\HighWay.cs" />
     <Compile Include="Models\HighwayList.cs" />
     <Compile Include="Models\UpdateTable.cs" />
     <Compile Include="UserControlInitial.xaml.cs">
       <DependentUpon>UserControlInitial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\UserControlAddRoadToList.xaml.cs">
+      <DependentUpon>UserControlAddRoadToList.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\UserControlLongestRoadBanquette.xaml.cs">
       <DependentUpon>UserControlLongestRoadBanquette.xaml</DependentUpon>
@@ -116,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Loading\LoadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -129,6 +139,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControlInitial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UserControlAddRoadToList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,7 +193,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Data\Highways.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -200,6 +213,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\saveFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\loadImage.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

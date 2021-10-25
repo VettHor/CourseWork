@@ -10,16 +10,17 @@ namespace Highway
     /// </summary>
     public partial class UserControlInitial : UserControl
     {
-        _updateTable _updateTable;
+        readonly UpdateTable UpdateTable;
         public UserControlInitial()
         {
             InitializeComponent();
-            _updateTable = new _updateTable();
+            UpdateTable = new UpdateTable();
         }
         public void OnButtonClick(object sender, RoutedEventArgs e)
         {
             MainWindow._highwaysList.ReadFile();
-            _updateTable.UpDateHighways(MainWindow._highwaysList);
+            UpdateTable updateTable = new UpdateTable();
+            updateTable.UpDateHighways(MainWindow._highwaysList);
         }
     }
 }

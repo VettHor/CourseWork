@@ -4,6 +4,9 @@ using System.Data;
 using Highway.Models;
 using System.Windows.Input;
 using System;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using Highway.UserControls;
 
 namespace Highway
 {
@@ -12,12 +15,12 @@ namespace Highway
     /// </summary>
     public partial class HighwayTable : UserControl
     {
-        readonly _updateTable _updateTable;
+        readonly UpdateTable UpdateTable;
         public HighwayTable()
         {
             InitializeComponent();
-            _updateTable = new _updateTable();
-            _updateTable.HighWaysFill += onTableUpdate;
+            UpdateTable = new UpdateTable();
+            UpdateTable.HighWaysFill += onTableUpdate;
         }
 
         private void onTableUpdate(HighwayList list)
@@ -32,8 +35,8 @@ namespace Highway
             dataTable.Columns.Add(new DataColumn("№", typeof(int)));
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Type", typeof(string)));
-            dataTable.Columns.Add(new DataColumn("Length", typeof(uint)));
-            dataTable.Columns.Add(new DataColumn("Lanes", typeof(uint)));
+            dataTable.Columns.Add(new DataColumn("Length", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("Lanes", typeof(int)));
             dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Separator", typeof(string)));
             DataRow rows; HighWay highway;
@@ -63,6 +66,28 @@ namespace Highway
             RoadTable.CanUserResizeColumns = false;
             RoadTable.CanUserResizeRows = false;
             RoadTable.CanUserReorderColumns = false;
+        }
+
+        private void AddRoadToTable_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Window
+            {
+                Title = "Add road to the table",
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize
+            };
+
+            Grid DynamicGrid = new Grid();
+            DynamicGrid.HorizontalAlignment = HorizontalAlignment.Left;
+            DynamicGrid.VerticalAlignment = VerticalAlignment.Top;
+            DynamicGrid.ShowGridLines = true;
+            DynamicGrid.Background = new SolidColorBrush(Colors.White);
+            DynamicGrid.Children.Add(new UserControlAddRoadToList(window));
+
+            window.Content = DynamicGrid;
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.Icon = new BitmapImage(new Uri(@"C:\Users\VETAL\Desktop\Course Work\Highway\Highway\Assets\road.png"));
+            window.ShowDialog();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Highway.UserControls
             InitializeComponent();
         }
 
-        private void FindGroupedSeparatedRoadsMoreTwoLines_Click(object sender, RoutedEventArgs e)
+        private void FindGroupedSeparatedRoadsMoreTwoLanes_Click(object sender, RoutedEventArgs e)
         {
             if (MainWindow._highwaysList.GetCurrentLength() == 0)
             {
@@ -30,7 +30,7 @@ namespace Highway.UserControls
                     MessageBoxImage.Warning);
                 return;
             }
-            Dictionary<RoadType, HighwayList> GroupedHighwayLists = MainWindow._highwaysList.FindGroupedSeparatedRoadsMoreTwoLines();
+            Dictionary<RoadType, HighwayList> GroupedHighwayLists = MainWindow._highwaysList.FindGroupedSeparatedRoadsMoreTwoLanes();
             if (GroupedHighwayLists[RoadType.state].GetCurrentLength() == 0 &&
                 GroupedHighwayLists[RoadType.regional].GetCurrentLength() == 0 &&
                 GroupedHighwayLists[RoadType.areal].GetCurrentLength() == 0 &&
@@ -52,49 +52,13 @@ namespace Highway.UserControls
             DynamicGrid.ShowGridLines = true;
             DynamicGrid.Background = new SolidColorBrush(Colors.White);
 
-            //state, regional, areal, local
-            //DataGrid datagrid = new DataGrid();
-            //DataTable dataTable = new DataTable();
-            //dataTable.Columns.Add(new DataColumn("№", typeof(int)));
-            //dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
-            //dataTable.Columns.Add(new DataColumn("Type", typeof(string)));
-            //dataTable.Columns.Add(new DataColumn("Length", typeof(uint)));
-            //dataTable.Columns.Add(new DataColumn("Lanes", typeof(uint)));
-            //dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
-            //dataTable.Columns.Add(new DataColumn("Separator", typeof(string)));
-            //DataRow rows; HighWay highway; int currLength;
-            //List<HighwayList> GroupedHighwayList = new List<HighwayList>();
-            //GroupedHighwayList = MainWindow._highwaysList.FindGroupedSeparatedRoadsMoreTwoLines();
-            //for (int i = 0; i < GroupedHighwayList.Count; ++i)
-            //{
-            //    currLength = GroupedHighwayList[i].GetCurrentLength();
-            //    for (int j = 0; j < currLength; ++j)
-            //    {
-            //        rows = dataTable.NewRow();
-            //        highway = GroupedHighwayList[i][j];
-            //        rows[0] = j + 1;
-            //        rows[1] = highway.NameHighway;
-            //        rows[2] = highway.RoadType;
-            //        rows[3] = highway.RoadLength;
-            //        rows[4] = highway.NumberLanes;
-            //        rows[5] = highway.Banquette;
-            //        rows[6] = highway.RoadSeparator;
-            //        dataTable.Rows.Add(rows);
-            //    }
-            //    if (i != GroupedHighwayList.Count - 1 && currLength != 0)
-            //    {
-            //        rows = dataTable.NewRow();
-            //        dataTable.Rows.Add(rows);
-            //    }
-            //}
-
             DataGrid datagrid = new DataGrid();
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn("№", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Type", typeof(string)));
-            dataTable.Columns.Add(new DataColumn("Length", typeof(uint)));
-            dataTable.Columns.Add(new DataColumn("Lanes", typeof(uint)));
+            dataTable.Columns.Add(new DataColumn("Length", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("Lanes", typeof(int)));
             dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Separator", typeof(string)));
             DataRow rows; HighWay highway; int currLength;
@@ -121,29 +85,6 @@ namespace Highway.UserControls
                 }
             }
 
-            //DataGrid datagrid = new DataGrid();
-            //DataTable dataTable = new DataTable();
-            //dataTable.Columns.Add(new DataColumn("№", typeof(int)));
-            //dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
-            //dataTable.Columns.Add(new DataColumn("Type", typeof(string)));
-            //dataTable.Columns.Add(new DataColumn("Length", typeof(uint)));
-            //dataTable.Columns.Add(new DataColumn("Lanes", typeof(uint)));
-            //dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
-            //dataTable.Columns.Add(new DataColumn("Separator", typeof(string)));
-            //DataRow rows; HighWay highway;
-            //for (int i = 0; i < MainWindow._highwaysList.GetCurrentLength(); ++i)
-            //{
-            //    rows = dataTable.NewRow();
-            //    highway = MainWindow._highwaysList[i];
-            //    rows[0] = i + 1;
-            //    rows[1] = highway.NameHighway;
-            //    rows[2] = highway.RoadType;
-            //    rows[3] = highway.RoadLength;
-            //    rows[4] = highway.NumberLanes;
-            //    rows[5] = highway.Banquette;
-            //    rows[6] = highway.RoadSeparator;
-            //    dataTable.Rows.Add(rows);
-            //}
             datagrid.ItemsSource = dataTable.DefaultView;
             datagrid.CanUserAddRows = false;
             datagrid.CanUserDeleteRows = false;
