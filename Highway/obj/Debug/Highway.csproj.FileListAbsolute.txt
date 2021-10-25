@@ -129,11 +129,9 @@ C:\Users\VETAL\Desktop\Course_Work\Highway\bin\Debug\MaterialDesignThemes.Wpf.xm
 C:\Users\VETAL\Desktop\Course_Work\Highway\bin\Debug\Microsoft.Xaml.Behaviors.pdb
 C:\Users\VETAL\Desktop\Course_Work\Highway\bin\Debug\Microsoft.Xaml.Behaviors.xml
 C:\Users\VETAL\Desktop\Course_Work\Highway\bin\Debug\Newtonsoft.Json.xml
-C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Highway.csproj.AssemblyReference.cache
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\HighwayTable.g.cs
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Loading\LoadingWindow.g.cs
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\MainWindow.g.cs
-C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\UserControlInitial.g.cs
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\UserControls\UserControlAddRoadToList.g.cs
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\UserControls\UserControlLongestRoadBanquette.g.cs
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\UserControls\UserControlOpenFile.g.cs
@@ -150,7 +148,6 @@ C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\App.baml
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\HighwayTable.baml
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Loading\LoadingWindow.baml
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\MainWindow.baml
-C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\UserControlInitial.baml
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\UserControls\UserControlAddRoadToList.baml
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\UserControls\UserControlLongestRoadBanquette.baml
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\UserControls\UserControlOpenFile.baml
@@ -163,6 +160,6 @@ C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Highway.g.resources
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Highway.Properties.Resources.resources
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Highway.csproj.GenerateResource.cache
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Highway.csproj.CoreCompileInputs.cache
-C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Highway.csproj.CopyComplete
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Highway.exe
 C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Highway.pdb
+C:\Users\VETAL\Desktop\Course_Work\Highway\obj\Debug\Highway.csproj.AssemblyReference.cache

@@ -86,7 +86,7 @@ namespace Highway
 
             window.Content = DynamicGrid;
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            window.Icon = new BitmapImage(new Uri(@"C:\Users\VETAL\Desktop\Course Work\Highway\Highway\Assets\road.png"));
+            window.Icon = new BitmapImage(new Uri(@"C:\Users\VETAL\Desktop\Course_Work\Highway\Assets\road.png"));
             window.ShowDialog();
         }
     }

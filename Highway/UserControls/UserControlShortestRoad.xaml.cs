@@ -31,10 +31,18 @@ namespace Highway.UserControls
                     MessageBoxImage.Warning);
                 return;
             }
+            if (foundHighWays.GetCurrentLength() == 0)
+            {
+                MessageBox.Show(
+                    "There is no such roads",
+                    "Find information",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
             //RoadPrint.Text = MainWindow._highwaysList.FindShortestRoadWithMostLanes().NameHighway;
             //RoadPrint.VerticalContentAlignment = VerticalAlignment.Center;
             //RoadPrint.HorizontalContentAlignment = HorizontalAlignment.Center;
-            if(foundHighWays.GetCurrentLength() != 1)
+            if (foundHighWays.GetCurrentLength() != 1)
                 MessageBox.Show(
                     "There is more than 1 road with same data",
                     "Find information",
@@ -90,7 +98,7 @@ namespace Highway.UserControls
                 ResizeMode = ResizeMode.NoResize
             };
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            window.Icon = new BitmapImage(new Uri(@"C:\Users\VETAL\Desktop\Course Work\Highway\Highway\Assets\road.png"));
+            window.Icon = new BitmapImage(new Uri(@"C:\Users\VETAL\Desktop\Course_Work\Highway\Assets\road.png"));
             window.ShowDialog();
         }
     }

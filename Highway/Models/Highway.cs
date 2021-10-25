@@ -7,12 +7,12 @@ namespace Highway.Models
     public class HighWay : IComparable<HighWay>
     {
         public static uint countRoads; // static value to keep count of roads of current HighwayList 
-        protected string _roadName; // current road name
-        protected RoadType _roadType; // current road type
-        protected int _roadLength; // current road length
-        protected int _roadCountLanes; // current road count length
-        protected Availability _roadBanquette; // current road banquette
-        protected Availability _roadSeparator; // current road separator
+        private string _roadName; // current road name
+        private RoadType _roadType; // current road type
+        private int _roadLength; // current road length
+        private int _roadCountLanes; // current road count length
+        private Availability _roadBanquette; // current road banquette
+        private Availability _roadSeparator; // current road separator
 
         public string NameHighway // getter and setter for road name
         {
@@ -44,6 +44,7 @@ namespace Highway.Models
             get => _roadSeparator; // get value
             set => _roadSeparator = value;// set value
         }
+
         public HighWay(string nameHighway = "", string roadType = "", int roadLength = 0,
             int numberLanes = 0, string banquette = "", string roadSeparator = "") // create road with given values
         {
@@ -54,6 +55,17 @@ namespace Highway.Models
             this._roadCountLanes = numberLanes;
             this._roadBanquette = (Availability)Enum.Parse(typeof(Availability), banquette, true); // parse string to enum value
             this._roadSeparator = (Availability)Enum.Parse(typeof(Availability), roadSeparator, true); // parse string to enum value
+        }
+        public HighWay(string nameHighway, RoadType roadType, int roadLength, int numberLanes, 
+            Availability banquette, Availability roadSeparator) // create road with given values
+        {
+            countRoads++; // increment countRoads to have current road count
+            this._roadName = nameHighway;
+            this._roadType = roadType;
+            this._roadLength = roadLength;
+            this._roadCountLanes = numberLanes;
+            this._roadBanquette = banquette;
+            this._roadSeparator = roadSeparator;
         }
         public HighWay(HighWay highWay) // create same road as given
         {

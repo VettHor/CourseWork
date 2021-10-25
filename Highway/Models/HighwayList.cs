@@ -10,10 +10,15 @@ namespace Highway.Models
     public class HighwayList
     {
         private List<HighWay> _highwaysList; // current list of roads
-        const int roadDataCount = 6; // amount of input data for each road
+        const int ROADDATACOUNT = 6; // amount of input data for each road
         public HighwayList() // create empty list
         {
             _highwaysList = new List<HighWay>();
+        }
+        public HighwayList(params HighWay[] highWay)
+        {
+            for (int i = 0; i < highWay.Length; ++i)
+                _highwaysList.Add(highWay[i]);
         }
         public HighwayList(HighwayList highwayList) // create list and initialize it with given
         {
@@ -53,7 +58,7 @@ namespace Highway.Models
                     currLine++;
                     line = reader.ReadLine(); // reading line
                     lineSplit = line.Split(); // splitting line
-                    if(lineSplit.Length != roadDataCount)  // if amount of data input is less or more than expected
+                    if(lineSplit.Length != ROADDATACOUNT)  // if amount of data input is less or more than expected
                         throw new FormatException(String.Format($"Wrong file format, an error has occurred in line {currLine}")); // then exceptional situation
                     for (int i = 0; i < lineSplit.Length; ++i) // if 
                         lineSplit[i] = String.Concat(lineSplit[i].Where(c => !Char.IsWhiteSpace(c)));

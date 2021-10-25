@@ -8,7 +8,7 @@
         Title="Highway Application" Height="600" Width="1024"
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" MouseDown="Window_MouseDown">
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\VETAL\Desktop\CourseWork-master\CourseWork-master\Highway\Assets\loadImage.jpg"/>
+        <ImageBrush ImageSource="C:\Users\VETAL\Desktop\Course_Work\Highway\Assets\loadImage.jpg"/>
     </Window.Background>
     <Grid>
         <Label Content="Highway Application" 
