@@ -56,9 +56,9 @@ namespace Highway.UserControls
             {
                 MessageBox.Show(
                          formatException.Message,
-                         "Warning",
+                         "Error",
                          MessageBoxButton.OK,
-                         MessageBoxImage.Warning); // unsuccessful message if exception occured
+                         MessageBoxImage.Error); // unsuccessful message if exception occured
             }
         }
     }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Highway.Loading"
         mc:Ignorable="d"
         Title="Highway Application" Height="600" Width="1024"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" MouseDown="Window_MouseDown">
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" MouseDown="Window_MouseDown" Icon="/Highway;component/Assets/road.png">
     <Window.Background>
         <ImageBrush ImageSource="C:\Users\VETAL\Desktop\Course_Work\Highway\Assets\loadImage.jpg"/>
     </Window.Background>

@@ -12,6 +12,7 @@
             <DataGrid.ContextMenu>
                 <ContextMenu>
                     <MenuItem Name="AddRoadToTable" Header="Add road" Click="AddRoadToTable_Click"/>
+                    <MenuItem Name="DeleteRoadTable" Header="Clear road list" Click="DeleteRoadTable_Click"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
         </DataGrid>

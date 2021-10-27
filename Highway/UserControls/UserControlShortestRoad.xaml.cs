@@ -5,7 +5,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Highway.Models;
 using System.Data;
-using System.Collections.Generic;
 
 namespace Highway.UserControls
 {
@@ -21,34 +20,34 @@ namespace Highway.UserControls
 
         private void FindShortestRoadMostLanes_Click(object sender, RoutedEventArgs e)
         {
-            HighwayList foundHighWays = MainWindow._highwaysList.FindShortestRoadWithMostLanes();
-            if (foundHighWays == null)
+            if (MainWindow._highwaysList.GetCurrentLength == 0) // if list is empty
             {
                 MessageBox.Show(
-                    "Cannot find road in HigwayTable, it is empty",
+                    "Cannot find roads in HigwayTable, it is empty",
                     "Find information",
                     MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+                    MessageBoxImage.Warning); // print warning and leave function
                 return;
             }
-            if (foundHighWays.GetCurrentLength() == 0)
+            HighwayList foundHighWays = MainWindow._highwaysList.FindShortestRoadWithMostLanes();
+            if (foundHighWays.GetCurrentLength == 0) // if list is empty
             {
                 MessageBox.Show(
                     "There is no such roads",
                     "Find information",
                     MessageBoxButton.OK,
-                    MessageBoxImage.Information);
+                    MessageBoxImage.Information); // print warning and leave function
+                return;
             }
-            //RoadPrint.Text = MainWindow._highwaysList.FindShortestRoadWithMostLanes().NameHighway;
-            //RoadPrint.VerticalContentAlignment = VerticalAlignment.Center;
-            //RoadPrint.HorizontalContentAlignment = HorizontalAlignment.Center;
-            if (foundHighWays.GetCurrentLength() != 1)
+
+            if (foundHighWays.GetCurrentLength != 1) // if more than 1 road
                 MessageBox.Show(
                     "There is more than 1 road with same data",
                     "Find information",
                     MessageBoxButton.OK,
-                    MessageBoxImage.Information);
-            Grid DynamicGrid = new Grid();
+                    MessageBoxImage.Information); // print info about different roads
+
+            Grid DynamicGrid = new Grid(); // create grid to push table
             DynamicGrid.Width = double.NaN;
             DynamicGrid.MaxHeight = 450;
             DynamicGrid.HorizontalAlignment = HorizontalAlignment.Left;
@@ -58,20 +57,20 @@ namespace Highway.UserControls
 
             DataGrid datagrid = new DataGrid();
             DataTable dataTable = new DataTable();
-            dataTable.Columns.Add(new DataColumn("№", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("№", typeof(int))); // headers
             dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Type", typeof(string)));
-            dataTable.Columns.Add(new DataColumn("Length", typeof(int)));
+            dataTable.Columns.Add(new DataColumn("Length, km", typeof(double)));
             dataTable.Columns.Add(new DataColumn("Lanes", typeof(int)));
             dataTable.Columns.Add(new DataColumn("Banquette", typeof(string)));
             dataTable.Columns.Add(new DataColumn("Separator", typeof(string)));
             DataRow rows;
-            int Length = foundHighWays.GetCurrentLength();
+            int Length = foundHighWays.GetCurrentLength;
             for (int i = 0; i < Length; ++i)
             {
-                rows = dataTable.NewRow();
+                rows = dataTable.NewRow(); // create new row
                 rows[0] = i + 1;
-                rows[1] = foundHighWays[i].NameHighway;
+                rows[1] = foundHighWays[i].NameHighway; // push all fiels
                 rows[2] = foundHighWays[i].RoadType;
                 rows[3] = foundHighWays[i].RoadLength;
                 rows[4] = foundHighWays[i].NumberLanes;
@@ -81,14 +80,14 @@ namespace Highway.UserControls
             }
 
             datagrid.ItemsSource = dataTable.DefaultView;
-            datagrid.CanUserAddRows = false;
+            datagrid.CanUserAddRows = false; // set properties
             datagrid.CanUserDeleteRows = false;
             datagrid.IsReadOnly = true;
             datagrid.CanUserResizeColumns = false;
             datagrid.CanUserResizeRows = false;
             datagrid.CanUserReorderColumns = false;
 
-            DynamicGrid.Children.Add(datagrid);
+            DynamicGrid.Children.Add(datagrid); // set datagrid on dynamic grid
 
             Window window = new Window
             {

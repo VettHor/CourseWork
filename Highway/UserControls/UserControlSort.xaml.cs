@@ -16,18 +16,18 @@ namespace Highway.UserControls
 
         private void SortButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MainWindow._highwaysList.GetCurrentLength() == 0)
+            if (MainWindow._highwaysList.GetCurrentLength == 0) // if list is empty
             {
                 MessageBox.Show(
                             "Cannot sort empty HigwayTable",
                             "Sort information",
                             MessageBoxButton.OK,
                             MessageBoxImage.Warning);
-                return;
+                return; // print warning and leave function
             }
-            MainWindow._highwaysList.Sort();
+            MainWindow._highwaysList.Sort(); // else - sort list
             UpdateTable UpdateTable = new UpdateTable();
-            UpdateTable.UpDateHighways(MainWindow._highwaysList);
+            UpdateTable.UpDateHighways(MainWindow._highwaysList); // print sorted list on the table
         }
     }
 }

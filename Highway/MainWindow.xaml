@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Highway"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Height="600" Width="1024" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
+        mc:Ignorable="d" Height="600" Width="1024" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" Icon="Assets/road.png">
     <Grid Background="#FFEEEEEE" MouseDown="Grid_MouseDown">
         <StackPanel VerticalAlignment="Top">
             <Grid Background="#FFC00000" Height="10"/>
@@ -18,7 +18,7 @@
                     <Button x:Name="Delete" Width="60" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Click="Delete_Click">
                         <materialDesign:PackIcon Kind="Delete" Width="40" Height="40"/>
                         <Button.ToolTip>
-                            <ToolTip>
+                            <ToolTip FontSize="25" FontFamily="Goudy Old Style">
                                 Delete HighwayTable
                             </ToolTip>
                         </Button.ToolTip>
@@ -26,7 +26,7 @@
                     <Button x:Name="AboutProgram" Width="60" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Margin="0 0 10 0" Click="AboutProgram_Click">
                         <materialDesign:PackIcon Kind="QuestionMarkCircle" Width="40" Height="40"/>
                         <Button.ToolTip>
-                            <ToolTip>
+                            <ToolTip FontSize="25" FontFamily="Goudy Old Style">
                                 About the program
                             </ToolTip>
                         </Button.ToolTip>
@@ -34,7 +34,7 @@
                     <Button x:Name="ButtonFechar" Width="45" Height="45" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="Gray" Click="ButtonFechar_Click">
                         <materialDesign:PackIcon Kind="Power" Width="45" Height="45"/>
                         <Button.ToolTip>
-                            <ToolTip>
+                            <ToolTip FontSize="25" FontFamily="Goudy Old Style">
                                 Turn off the app
                             </ToolTip>
                         </Button.ToolTip>

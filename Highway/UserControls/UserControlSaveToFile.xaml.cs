@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System;
 
 namespace Highway.UserControls
 {
@@ -16,12 +15,12 @@ namespace Highway.UserControls
 
         private void SaveToFileAllRoads_Click(object sender, RoutedEventArgs e)
         {
-            if(MainWindow._highwaysList.WriteToFile())
+            if(MainWindow._highwaysList.WriteToFile()) // if saving was approved
                 MessageBox.Show(
                         "Successfully saved to file",
                         "Output information",
                         MessageBoxButton.OK,
-                        MessageBoxImage.Information);
+                        MessageBoxImage.Information); // print message about success
         }
     }
 }

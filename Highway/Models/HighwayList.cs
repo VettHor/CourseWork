@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.Win32;
 using System.Windows;
+using System.Text.RegularExpressions;
 
 namespace Highway.Models
 {
@@ -26,8 +27,10 @@ namespace Highway.Models
                 _highwaysList = highwayList._highwaysList;
             else throw new NullReferenceException("Initialize with empty list"); // else exceptional situation
         }
-        public int GetCurrentLength() // get current length of the list of roads
-        { return _highwaysList.Count; }
+        public int GetCurrentLength // get current length of the list of roads
+        { 
+            get => _highwaysList.Count;
+        }
         public bool ReadFile() // read all roads from file and create list of roads
         {
             OpenFileDialog fileDialog = new OpenFileDialog(); // create opening dialog to choose what file to read
@@ -45,7 +48,7 @@ namespace Highway.Models
             List<HighWay> beforeHighwayList = new List<HighWay>(); // create new list to save all roads
             string nameHighway = ""; // variables to keep all data
             RoadType roadType = RoadType.state;
-            int roadLength;
+            double roadLength;
             int numberLanes;
             Availability banquette = Availability.unavailable;
             Availability roadSeparator = Availability.unavailable;
@@ -59,25 +62,35 @@ namespace Highway.Models
                     line = reader.ReadLine(); // reading line
                     lineSplit = line.Split(); // splitting line
                     if(lineSplit.Length != ROADDATACOUNT)  // if amount of data input is less or more than expected
-                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line {currLine}")); // then exceptional situation
-                    for (int i = 0; i < lineSplit.Length; ++i) // if 
+                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line " +
+                            $"{currLine}, check amount of data!")); // then exceptional situation
+                    for (int i = 0; i < lineSplit.Length; ++i) // delete empty spaces
                         lineSplit[i] = String.Concat(lineSplit[i].Where(c => !Char.IsWhiteSpace(c)));
+                    if(!(new Regex("^[a-zA-Z-]+$")).IsMatch(lineSplit[0])) // if name does not contain letters or symbol '-'
+                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line " +
+                            $"{currLine}, wrong road name!"));
                     nameHighway = lineSplit[0];
                     if (!Enum.IsDefined(typeof(RoadType), lineSplit[1])) // if cannot convert string to enum value
-                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line {currLine}"));
+                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line " +
+                            $"{currLine}, wrong road type!"));
                     roadType = (RoadType)Enum.Parse(typeof(RoadType), lineSplit[1], true);
-                    if (!int.TryParse(lineSplit[2], out roadLength)) // if cannot convert string to uint
-                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line {currLine}"));
-                    if (!int.TryParse(lineSplit[3], out numberLanes)) // if cannot convert string to uint
-                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line {currLine}"));
+                    if (!double.TryParse(lineSplit[2], out roadLength)) // if cannot convert string to double
+                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line " +
+                            $"{currLine}, wrong road length!"));
+                    if (!int.TryParse(lineSplit[3], out numberLanes)) // if cannot convert string to int
+                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line " +
+                            $"{currLine}, wrong count of lanes!"));
                     if (!Enum.IsDefined(typeof(Availability), lineSplit[4]))  // if cannot convert string to enum value
-                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line {currLine}"));
+                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line " +
+                            $"{currLine}, wrong banquette availability"));
                     banquette = (Availability)Enum.Parse(typeof(Availability), lineSplit[4], true);
                     if (!Enum.IsDefined(typeof(Availability), lineSplit[5]))  // if cannot convert string to enum value
-                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line {currLine}"));
+                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line " +
+                            $"{currLine}, wrong road separator availability"));
                     roadSeparator = (Availability)Enum.Parse(typeof(Availability), lineSplit[5], true);
                     if(roadLength <= 0 || numberLanes <= 0) // if converted number are length or equal 0
-                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line {currLine}"));
+                        throw new FormatException(String.Format($"Wrong file format, an error has occurred in line " +
+                            $"{currLine}, wrong entered numbers"));
 
                     beforeHighwayList.Add(new HighWay(nameHighway, 
                                                     roadType.ToString(), 
@@ -88,12 +101,13 @@ namespace Highway.Models
                 }
                 _highwaysList = beforeHighwayList; // if everything is done than copy new list to current list
             }
+            HighWay.CountRoads = GetCurrentLength;
             return true;
         }
 
         public bool WriteToFile()
         {
-            if (GetCurrentLength() == 0) // if table is empty
+            if (GetCurrentLength == 0) // if table is empty
                 if (MessageBox.Show( // ask user about saving it to file
                     "The table is empty, are you sure to save it?",
                     "Saving the HigwayTable",
@@ -109,8 +123,8 @@ namespace Highway.Models
                 {
                     Byte[] title = new System.Text.UTF8Encoding(true).GetBytes(ToString()); // get text to print
                     fs.Write(title, 0, title.Length); // print to file
-                    return true;
                 }
+                return true;
             }
             return false; // if saving is not approved
         }
@@ -127,15 +141,44 @@ namespace Highway.Models
         }
         public void Sort() // sorting roads
         {
-            _highwaysList.Sort(); // override sort, where type of sort is mentioned in HighWay.cs
+            Mergesort(0, GetCurrentLength - 1); // start sorting
+        }
+        private void Mergesort(int lowIndex, int highIndex) // function to divide list to be merged
+        {
+            if (lowIndex == highIndex) return; // condition to left
+            int middleIndex = (lowIndex + highIndex) / 2;
+            Mergesort(lowIndex, middleIndex); // divide left part
+            Mergesort(middleIndex + 1, highIndex); // divide right part
+            Merge(lowIndex, middleIndex, highIndex); // merge divided list
+        }
+        private void Merge(int lowIndex, int middleIndex, int highIndex) // algorithm to merge parts in divided list
+        {
+            int left = lowIndex;
+            int right = middleIndex + 1;
+            HighWay[] tempArray = new HighWay[highIndex - lowIndex + 1]; // temp array to keep changes
+            int index = 0;
+            while ((left <= middleIndex) && (right <= highIndex))
+            {
+                if (_highwaysList[left].RoadLength <= _highwaysList[right].RoadLength)
+                    tempArray[index++] = _highwaysList[left++];
+                else
+                    tempArray[index++] = _highwaysList[right++];
+            }
+            for (int i = left; i <= middleIndex; i++) // copy remaining items
+                tempArray[index++] = _highwaysList[i];
+            for (int i = right; i <= highIndex; i++) // copy remaining items
+                tempArray[index++] = _highwaysList[i];
+            for (int i = 0; i < tempArray.Length; i++) // 
+                _highwaysList[lowIndex + i] = tempArray[i]; // overwrite the elements
         }
         public HighwayList FindShortestRoadWithMostLanes() // finding shortest road with most lanes 
         {
-            if (GetCurrentLength() == 0) return null; // if table is empty leave
+            if (GetCurrentLength == 0) return null; // if table is empty leave
             HighwayList minHighways = new HighwayList(); // create new list that contains shortest road
             minHighways._highwaysList.Add(_highwaysList[0]); // add to new list first road from list
-            int countHighWays = GetCurrentLength(); // get current length of highwaysList
-            if (countHighWays == 1) return minHighways; // if count is 1, then return list
+            int countHighWays = GetCurrentLength; // get current length of highwaysList
+            if (countHighWays == 1) 
+                return minHighways; // if count is 1, then return list
             for (int i = 1; i < countHighWays; ++i) // move through other roads in the list
             {
                 if (minHighways[0].NumberLanes < _highwaysList[i].NumberLanes || // if road has more lanes than previous or
@@ -144,6 +187,7 @@ namespace Highway.Models
                 {
                     minHighways._highwaysList.Clear(); // then clear current list
                     minHighways._highwaysList.Add(_highwaysList[i]); // and add current road to the list
+                    continue;
                 }
                 if(minHighways[0].NumberLanes == _highwaysList[i].NumberLanes &&
                    minHighways[0].RoadLength == _highwaysList[i].RoadLength) // situation when roads have same data
@@ -156,10 +200,10 @@ namespace Highway.Models
         public Dictionary<RoadType, HighwayList> FindGroupedSeparatedRoadsMoreTwoLanes() // find grouped roads with
                                                                                          // separator and more than 2 lanes
         {
-            if (GetCurrentLength() == 0) return null; // if table is empty leave
+            if (GetCurrentLength == 0) return null; // if table is empty leave
             // create road dictionary that has all roads with separator and more than 2 lanes where key is RoadType 
             Dictionary<RoadType, HighwayList> GroupedHighwayLists = new Dictionary<RoadType, HighwayList>();
-            int countHighWays = GetCurrentLength();
+            int countHighWays = GetCurrentLength;
             for (RoadType i = 0; i <= RoadType.local; ++i) // moving through all RoadType (enum)
             {
                 GroupedHighwayLists.Add(i, new HighwayList()); // add current key
@@ -174,11 +218,11 @@ namespace Highway.Models
 
         public HighwayList FindRegionalRoadsMostLanesCrosswalkAvailable() // find regional roads with most lanes and crosswalks
         {
-            if (GetCurrentLength() == 0) return null; // if table is empty leave
+            if (GetCurrentLength == 0) return null; // if table is empty leave
             // create HighwayList to keep current roads
             HighwayList regionalRoadsList = new HighwayList();
             int maxLanesCount = 0; // value to keep max lanes count
-            int countHighWays = GetCurrentLength(); // get current length of highwaysList
+            int countHighWays = GetCurrentLength; // get current length of highwaysList
             for (int i = 0; i < countHighWays; ++i) // moving through all roads
             {
                 if (_highwaysList[i].RoadType == RoadType.regional && // if road type is regional and 
@@ -197,9 +241,9 @@ namespace Highway.Models
         }
         public override string ToString() // parse road to the string
         {
-            if (GetCurrentLength() == 0) return null; // if table is empty leave
+            if (GetCurrentLength == 0) return null; // if table is empty leave
             string print = ""; // value to keep all roads in text format
-            int countHighWays = GetCurrentLength(); // get current length of highwaysList
+            int countHighWays = GetCurrentLength; // get current length of highwaysList
             for (int i = 0; i < countHighWays; ++i) // moving through all roads
                 print += String.Format($"{_highwaysList[i]}\n"); // add current road to the print value
             return print; // return text with all roads
@@ -208,7 +252,7 @@ namespace Highway.Models
         public Dictionary<RoadType, HighwayList> FindAllRoadTypesWithFootpathsMaxLength() // find road types with
                                                                                           // banquette and road is longest 
         {
-            if (GetCurrentLength() == 0) return null; // if table is empty leave
+            if (GetCurrentLength == 0) return null; // if table is empty leave
             // create road dictionary that has all road types with banquette and road is longest
             Dictionary<RoadType, HighwayList> roadTypes = new Dictionary<RoadType, HighwayList>()
             {
@@ -217,8 +261,8 @@ namespace Highway.Models
                 { RoadType.areal, new HighwayList() },
                 { RoadType.local, new HighwayList() }
             };
-            int maxLength = 0; // to keep max length of road
-            int countHighWays = GetCurrentLength(); // get current length of highwaysList
+            double maxLength = 0; // to keep max length of road
+            int countHighWays = GetCurrentLength; // get current length of highwaysList
             for (int i = 0; i < countHighWays; ++i) // moving through all roads
                 if (_highwaysList[i].Banquette == Availability.available) // if road has banquette
                 {
@@ -226,8 +270,7 @@ namespace Highway.Models
                     {
                         maxLength = _highwaysList[i].RoadLength; // then set new maxLength
                         for (RoadType j = 0; j < RoadType.local; ++j) // moving through all road types
-                            if (_highwaysList[i].RoadType == j) // if current road type is equal to j
-                                roadTypes[j]._highwaysList.Clear(); // then clear list
+                            roadTypes[j]._highwaysList.Clear(); // then clear lists
                     }
                     if (maxLength == _highwaysList[i].RoadLength) // if maxLength is equal to current road length
                         for (RoadType j = 0; j < RoadType.local; ++j) // moving through all road types
@@ -239,7 +282,7 @@ namespace Highway.Models
         public void ClearList() // clear road list
         {
             _highwaysList.Clear();
-            HighWay.countRoads = 0; // static value that contains count of roads is equal to 0 now
+            HighWay.CountRoads = 0; // static value that contains count of roads is equal to 0 now
         }
         public void Add(HighWay highWay) // add road to the list
         {
